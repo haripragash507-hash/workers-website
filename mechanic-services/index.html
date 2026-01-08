@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanFix - Mechanic Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <style>
+      .review-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1rem;
+      }
+      .review-card {
+        background: #f9f9f9;
+        border-left: 4px solid #00aaff;
+        padding: 1rem;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>UrbanFix Car & Bike Mechanic Services</h1>
+        <p>
+          Reliable mechanic solutions delivered to your doorstep. Expert repair and servicing for all vehicles.
+        </p>
+        <a href="#book" class="btn-primary">Book Now</a>
+      </div>
+      <div class="hero-img">
+        <img
+          src="https://www.urbancompany.com/_next/image?url=%2Fimages%2Fmechanic.jpg&w=1080&q=75"
+          alt="Mechanic Technician"
+          onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/333333?text=Mechanic+Service'"
+        />
+      </div>
+    </section>
+
+    <section class="services">
+      <h2>Mechanic Services Offered</h2>
+      <div class="service-container">
+        <div class="service-card">
+          <h3>1. General Vehicle Servicing</h3>
+          <p>
+            Comprehensive check-up and maintenance for your two-wheeler or four-wheeler. Includes oil change, air filter cleaning, brake inspection, coolant top-up, and battery check. Ensures smooth performance and longevity of your vehicle.
+          </p>
+          <p><strong>Price:</strong> ₹799 (Bike), ₹1299 (Car)</p>
+        </div>
+        <div class="service-card">
+          <h3>2. Engine Diagnosis & Repair</h3>
+          <p>
+            Our expert mechanics use advanced diagnostic tools to identify issues in your vehicle's engine. Services include timing adjustment, noise troubleshooting, spark plug replacement, and minor engine repairs to restore optimum performance.
+          </p>
+          <p><strong>Price:</strong> ₹999 onwards</p>
+        </div>
+        <div class="service-card">
+          <h3>3. Brake & Clutch Service</h3>
+          <p>
+            Get your brake pads, clutch plates, and cables inspected and replaced if needed. We ensure complete safety and smooth functioning with quality parts and expert fitting. Suitable for both manual and automatic vehicles.
+          </p>
+          <p><strong>Price:</strong> ₹499 – ₹1499 depending on vehicle</p>
+        </div>
+        <div class="service-card">
+          <h3>4. Battery Check & Replacement</h3>
+          <p>
+            Facing frequent vehicle start issues? We provide battery voltage check, terminal cleaning, and replacement with branded batteries. Includes free installation and old battery disposal. 1-year warranty available on new batteries.
+          </p>
+          <p><strong>Price:</strong> ₹699 (check), ₹2399+ (replacement)</p>
+        </div>
+        <div class="service-card">
+          <h3>5. Vehicle Pickup & Drop</h3>
+          <p>
+            Too busy to visit the garage? Book our contactless pickup & drop facility for service or repairs. Your vehicle is handled with utmost care by trained professionals with complete transparency throughout the process.
+          </p>
+          <p><strong>Price:</strong> ₹199 (one-way), ₹349 (round trip)</p>
+        </div>
+        <div class="service-card">
+          <h3>6. AC Repair & Gas Refill</h3>
+          <p>
+            Restore your vehicle’s cooling with our AC service. Includes compressor check, refrigerant refill, and blower cleaning. Ensures fresh air, improved cooling efficiency, and better mileage. Applicable to both cars and large two-wheelers with AC.
+          </p>
+          <p><strong>Price:</strong> ₹1499 onwards</p>
+        </div>
+        <div class="service-card">
+          <h3>7. Emergency Breakdown Assistance</h3>
+          <p>
+            Stranded on the road? Our rapid-response team is available to assist with on-spot flat tire repair, jumpstart, fuel delivery, and towing service. Quick resolution to get you back on the road without delay.
+          </p>
+          <p><strong>Price:</strong> ₹299 – ₹999 depending on issue</p>
+        </div>
+        <div class="service-card">
+          <h3>8. Annual Vehicle Care Plan (AMC)</h3>
+          <p>
+            Year-round peace of mind with 3 scheduled services, priority support, discounts on spare parts, and doorstep assistance. Designed for proactive vehicle owners who want hassle-free performance and extended vehicle life.
+          </p>
+          <p><strong>Price:</strong> ₹1799/year (Bike), ₹2799/year (Car)</p>
+        </div>
+      </div>
+    </section>
+
+   <section class="review-section">
+  <h2>What Our Customers Say</h2>
+  <div class="review-cards">
+    <div class="review-card">
+      <p>"Electrician was super punctual and installed 3 ceiling fans in no time. Great service!"</p>
+      <strong>– Anjali S.</strong>
+    </div>
+    <div class="review-card">
+      <p>"They fixed my power trip issue in 15 minutes. Highly professional and polite."</p>
+      <strong>– Vikram R.</strong>
+    </div>
+    <div class="review-card">
+      <p>"Very neat wiring job and they explained everything clearly. Will book again."</p>
+      <strong>– Karthik M.</strong>
+    </div>
+  </div>
+</section>
+
+
+    <section class="booking" id="book">
+      <h2>Book Your Mechanic</h2>
+      <form id="bookingForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <select id="serviceType" required>
+          <option value="">Choose Service</option>
+          <option value="general">General Servicing</option>
+          <option value="engine">Engine Repair</option>
+          <option value="brake">Brake/Clutch</option>
+          <option value="battery">Battery Check</option>
+          <option value="ac">AC Repair</option>
+        </select>
+        <input type="date" id="date" required />
+        <button type="submit" class="btn-submit">Submit</button>
+        <p id="formMessage"></p>
+      </form>
+    </section>
+  </body>
+</html>

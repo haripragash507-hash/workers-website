@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanCool - Plumber Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>UrbanCool Plumbing Solutions</h1>
+        <p>
+          Reliable and affordable plumbing services at your doorstep.
+          Book trained plumbers instantly!
+        </p>
+        <a href="#book" class="btn-primary">Book Now</a>
+      </div>
+      <div class="hero-img">
+        <img
+          src="https://www.urbancompany.com/_next/image?url=%2Fimages%2Fplumbing-service.jpg&w=1080&q=75"
+          alt="Plumber"
+          onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/333333?text=Plumber'"
+        />
+      </div>
+    </section>
+
+    <section class="services">
+      <h2>Plumber Services Offered</h2>
+      <div class="service-container">
+        <div class="service-card">
+          <h3>1. Tap & Mixer Repair</h3>
+          <p>Fix leaking or broken taps, replace mixers, and stop water wastage efficiently. Our experts handle all types of faucets and ensure proper sealing and functionality to prevent future leaks.</p>
+          <p><strong>Price:</strong> ₹199 onwards</p>
+        </div>
+
+        <div class="service-card">
+          <h3>2. Toilet & Flush Repairs</h3>
+          <p>Resolve flushing issues, leaking cisterns, or install new flush tanks for all toilet types. We ensure smooth operation with durable parts and modern installation techniques.</p>
+          <p><strong>Price:</strong> ₹299 onwards</p>
+        </div>
+
+        <div class="service-card">
+          <h3>3. Blockage Removal</h3>
+          <p>Clear blockages in kitchen sinks, wash basins, or bathroom drains using high-pressure tools. We remove clogs caused by food waste, hair, grease, or other debris without damaging your pipes.</p>
+          <p><strong>Price:</strong> ₹399 onwards</p>
+        </div>
+
+        <div class="service-card">
+          <h3>4. New Plumbing Installations</h3>
+          <p>Install new pipelines, kitchen/bathroom fittings, or complete bathroom plumbing setup. From layout design to execution, we ensure safe and aesthetic installations that comply with standards.</p>
+          <p><strong>Price:</strong> ₹499 onwards</p>
+        </div>
+
+        <div class="service-card">
+          <h3>5. Shower Installation & Repair</h3>
+          <p>Fix faulty showers or install modern hand and rain showers for a fresh bathroom experience. Our professionals ensure accurate placement and leak-free installations every time.</p>
+          <p><strong>Price:</strong> ₹299 – ₹599</p>
+        </div>
+
+        <div class="service-card">
+          <h3>6. Water Tank Overflow Fix</h3>
+          <p>Install new float valves or repair old ones to prevent overflow and save water. We help avoid waterlogging and structural damage due to excess tank water overflow.</p>
+          <p><strong>Price:</strong> ₹249 onwards</p>
+        </div>
+
+        <div class="service-card">
+          <h3>7. Underground Leak Detection</h3>
+          <p>Identify and repair hidden leakages using pressure testing and moisture sensors. Our team uses advanced technology to locate leaks quickly, minimizing digging and disruption.</p>
+          <p><strong>Price:</strong> ₹799 onwards</p>
+        </div>
+
+        <div class="service-card">
+          <h3>8. Annual Plumbing Maintenance</h3>
+          <p>Regular inspections and priority repairs for kitchens and bathrooms under one package. This preventive service includes cleaning, minor repairs, and health checks for plumbing infrastructure.</p>
+          <p><strong>Price:</strong> ₹1499/year</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <h2>Customer Testimonials</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <p>
+            "Got my kitchen tap fixed within 30 mins. Fast service and great pricing!"
+          </p>
+          <strong>– Meena R.</strong>
+        </div>
+        <div class="review-card">
+          <p>
+            "Drain blockage cleared without any mess. Very professional plumber."
+          </p>
+          <strong>– Ajay S.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <h2>Book Plumbing Service</h2>
+      <form id="bookingForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <select id="serviceType" required>
+          <option value="">Choose Service</option>
+          <option value="tap-repair">Tap Repair</option>
+          <option value="toilet">Toilet Flush</option>
+          <option value="blockage">Blockage Removal</option>
+        </select>
+        <input type="date" id="date" required />
+        <button type="submit" class="btn-submit">Submit</button>
+        <p id="formMessage"></p>
+      </form>
+    </section>
+  </body>
+</html>

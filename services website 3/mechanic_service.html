@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanFix - Mechanic Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc; /* bg-gray-50 */
+            color: #2d3748; /* text-gray-800 */
+        }
+        /* Custom styles for elements that Tailwind doesn't directly cover or for specific overrides */
+        .service-card {
+            background-color: white;
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            transition: transform 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .review-card {
+            background-color: white;
+            padding: 1.25rem; /* p-5 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+        }
+        /* Style for the Book Now buttons within service cards */
+        .book-service-btn {
+            margin-top: 1rem; /* mt-4 */
+            padding: 0.5rem 1rem; /* Smaller padding */
+            background-color: #3B82F6; /* bg-blue-500 */
+            color: white;
+            font-weight: 700; /* font-bold */
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            align-self: flex-start; /* Aligns the button to the start (left) of the flex container */
+        }
+        .book-service-btn:hover {
+            background-color: #2563EB; /* hover:bg-blue-600 */
+            transform: scale(1.05); /* Slightly increased hover scale for better feedback */
+        }
+        /* Styling for form elements in the booking section to match overall theme */
+        .booking-input, .booking-select {
+            width: 100%;
+            padding: 0.75rem; /* py-3 */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.5rem; /* rounded-md */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+            font-size: 1rem; /* text-base */
+            color: #374151; /* text-gray-700 */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .booking-input:focus, .booking-select:focus {
+            outline: none;
+            border-color: #3B82F6; /* focus:border-blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 */
+        }
+        .btn-submit-form {
+            width: 100%;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            background-color: #1D4ED8; /* bg-blue-700 */
+            color: white;
+            font-weight: 700; /* font-bold */
+            border-radius: 0.5rem; /* rounded-md */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .btn-submit-form:hover {
+            background-color: #1E40AF; /* hover:bg-blue-800 */
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body >
+
+    <div id="header-placeholder"></div>
+
+    <div class="bg-gray-50 text-gray-800">
+
+        <!-- Header Section (Hero) -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="text-center md:text-left mb-8 md:mb-0">
+                <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+                    Car & Bike Mechanic Services 
+                </h1>
+                <p class="text-xl text-blue-100 mb-6 max-w-lg">
+                    Reliable mechanic solutions delivered to your doorstep. Expert repair and servicing for all vehicles.
+                </p>
+                <!-- Removed the "Book Now" button from header -->
+            </div>
+            <div class="flex-shrink-0">
+                <img
+                    src="./img/m.jpg"
+                    alt="Mechanic Technician"
+                    class="rounded-lg shadow-xl w-64 md:w-80"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">Mechanic Services Offered</h2>
+        <div class="grid grid-cols-1 gap-8">
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">1. General Vehicle Servicing</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Comprehensive check-up and maintenance for your two-wheeler or four-wheeler. Includes oil change, air filter cleaning, brake inspection, coolant top-up, and battery check. Ensures smooth performance and longevity of your vehicle.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹799 (Bike), ₹1299 (Car)</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="General Vehicle Servicing">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">2. Engine Diagnosis & Repair</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Our expert mechanics use advanced diagnostic tools to identify issues in your vehicle's engine. Services include timing adjustment, noise troubleshooting, spark plug replacement, and minor engine repairs to restore optimum performance.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹999 onwards</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="Engine Diagnosis & Repair">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">3. Brake & Clutch Service</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Get your brake pads, clutch plates, and cables inspected and replaced if needed. We ensure complete safety and smooth functioning with quality parts and expert fitting. Suitable for both manual and automatic vehicles.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹499 – ₹1499 depending on vehicle</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="Brake & Clutch Service">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">4. Battery Check & Replacement</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Facing frequent vehicle start issues? We provide battery voltage check, terminal cleaning, and replacement with branded batteries. Includes free installation and old battery disposal. 1-year warranty available on new batteries.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹699 (check), ₹2399+ (replacement)</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="Battery Check & Replacement">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">5. Vehicle Pickup & Drop</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Too busy to visit the garage? Book our contactless pickup & drop facility for service or repairs. Your vehicle is handled with utmost care by trained professionals with complete transparency throughout the process.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹199 (one-way), ₹349 (round trip)</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="Vehicle Pickup & Drop">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">6. AC Repair & Gas Refill</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Restore your vehicle’s cooling with our AC service. Includes compressor check, refrigerant refill, and blower cleaning. Ensures fresh air, improved cooling efficiency, and better mileage. Applicable to both cars and large two-wheelers with AC.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹1499 onwards</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="AC Repair & Gas Refill">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">7. Emergency Breakdown Assistance</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Stranded on the road? Our rapid-response team is available to assist with on-spot flat tire repair, jumpstart, fuel delivery, and towing service. Quick resolution to get you back on the road without delay.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹299 – ₹999 depending on issue</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="Emergency Breakdown Assistance">Book Now</button>
+                </a>
+            </div>
+            <div class="service-card">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">8. Annual Vehicle Care Plan (AMC)</h3>
+                    <p class="text-gray-700 text-sm mb-3">
+                        Year-round peace of mind with 3 scheduled services, priority support, discounts on spare parts, and doorstep assistance. Designed for proactive vehicle owners who want hassle-free performance and extended vehicle life.
+                    </p>
+                    <p class="text-blue-600 font-bold text-base mb-4">Price: ₹1799/year (Bike), ₹2799/year (Car)</p>
+                </div>
+                <a href="booking.html">
+                <button class="book-service-btn" data-service="Annual Vehicle Care Plan (AMC)">Book Now</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Our Customers Say Section -->
+    <section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">What Our Customers Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="review-card">
+                <p class="text-gray-700 italic mb-4">"Electrician was super punctual and installed 3 ceiling fans in no time. Great service!"</p>
+                <p class="font-semibold text-gray-900">– Anjali S.</p>
+            </div>
+            <div class="review-card">
+                <p class="text-gray-700 italic mb-4">"They fixed my power trip issue in 15 minutes. Highly professional and polite."</p>
+                <p class="font-semibold text-gray-900">– Vikram R.</p>
+            </div>
+            <div class="review-card">
+                <p class="text-gray-700 italic mb-4">"Very neat wiring job and they explained everything clearly. Will book again."</p>
+                <p class="font-semibold text-gray-900">– Karthik M.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+       
+
+        // Helper function to map service name to option value for the select dropdown
+        function getServiceOptionValue(serviceName) {
+            switch (serviceName) {
+                case "General Vehicle Servicing": return "general";
+                case "Engine Diagnosis & Repair": return "engine";
+                case "Brake & Clutch Service": return "brake";
+                case "Battery Check & Replacement": return "battery";
+                case "Vehicle Pickup & Drop": return "pickup_drop";
+                case "AC Repair & Gas Refill": return "ac_repair";
+                case "Emergency Breakdown Assistance": return "emergency";
+                case "Annual Vehicle Care Plan (AMC)": return "amc";
+                default: return ""; // Fallback
+            }
+        }
+
+        // Booking Form Submission Logic
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const date = document.getElementById('date').value;
+            const formMessage = document.getElementById('formMessage');
+
+            if (!name || !phone || !serviceType || !date) {
+                formMessage.textContent = 'Please fill in all fields.';
+                formMessage.style.color = 'red';
+                return;
+            }
+
+            const bookingDetails = {
+                name: name,
+                phone: phone,
+                service: serviceType,
+                date: date
+            };
+
+            console.log('Booking Details:', bookingDetails);
+            formMessage.textContent = 'Booking successful! We will contact you shortly.';
+            formMessage.style.color = 'green';
+            this.reset(); // Clear the form
+            // In a real application, you would send this data to a server
+        });
+    </script>
+        
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+    async function loadContent(url, targetId) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+        const html = await res.text();
+        document.getElementById(targetId).innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        document.getElementById(targetId).innerHTML =
+          `<div class="p-4 bg-red-100 text-red-700 rounded-md">Error loading ${url}</div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent('header.html', 'header-placeholder');
+      loadContent('footer.html', 'footer-placeholder');
+    });
+  </script>
+
+    
+</body>
+</html>
+

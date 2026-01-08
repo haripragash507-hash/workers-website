@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for better aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Basic styling for removed elements to make them somewhat visible */
+        .basic-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #cbd5e1; /* Soft gray border (slate-300) */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .basic-textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #cbd5e1; /* Soft gray border (slate-300) */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .basic-fieldset {
+            border: 1px solid #e2e8f0; /* Lighter gray border (gray-200) */
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #f8fafc; /* light blue-gray for background */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-200">
+        <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-8">Book Your Service 🚀</h2>
+
+        <!-- Booking Form -->
+        <form id="bookingForm" class="space-y-6">
+
+            <!-- Name Display -->
+            <div class="p-2 bg-gray-50 rounded-md">
+                <p class="block text-sm font-medium text-gray-700 mb-1">Name: <span class="font-semibold text-gray-900">John Doe</span></p>
+            </div>
+
+            <!-- Phone Number Display -->
+            <div class="p-2 bg-gray-50 rounded-md">
+                <p class="block text-sm font-medium text-gray-700 mb-1">Phone Number: <span class="font-semibold text-gray-900">+919876543210</span></p>
+            </div>
+
+            <!-- Address Display -->
+            <div class="p-2 bg-gray-50 rounded-md">
+                <p class="block text-sm font-medium text-gray-700 mb-1">Address: <span class="font-semibold text-gray-900">123 Main Street, Anytown, India</span></p>
+            </div>
+
+            <!-- Service Price Display -->
+            <div class="p-2 bg-gray-50 rounded-md">
+                <label for="price" class="block text-sm font-medium text-gray-700 mb-1">Service Price</label>
+                <p id="price" class="text-xl font-bold text-gray-900">₹ 500.00</p>
+            </div>
+
+            <!-- Service Date Display -->
+            <div class="p-2 bg-gray-50 rounded-md">
+                <p class="block text-sm font-medium text-gray-700 mb-1">Date (Service Day): <span class="font-semibold text-gray-900">2025-08-15</span></p>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div class="p-4 bg-gray-100 rounded-lg shadow-inner">
+                <label class="block text-base font-semibold text-gray-800 mb-2">Payment Method</label>
+                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                    <label class="inline-flex items-center text-gray-700">
+                        <input type="radio" name="paymentMethod" value="card" id="radioCard"
+                               class="form-radio h-5 w-5 text-blue-600 border-gray-400 focus:ring-blue-500 rounded-full" checked>
+                        <span class="ml-2">Credit/Debit Card</span>
+                    </label>
+                    <label class="inline-flex items-center text-gray-700">
+                        <input type="radio" name="paymentMethod" value="upi" id="radioUpi"
+                               class="form-radio h-5 w-5 text-blue-600 border-gray-400 focus:ring-blue-500 rounded-full">
+                        <span class="ml-2">UPI</span>
+                    </label>
+                    <label class="inline-flex items-center text-gray-700">
+                        <input type="radio" name="paymentMethod" value="cash" id="radioCash"
+                               class="form-radio h-5 w-5 text-blue-600 border-gray-400 focus:ring-blue-500 rounded-full">
+                        <span class="ml-2">Cash on Service</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Card Payment Form (Initially Hidden) -->
+            <div id="cardPaymentForm" class="basic-fieldset">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Card Details</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="cardNumber" class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="•••• •••• •••• ••••"
+                               class="basic-input" pattern="[0-9]{13,16}" title="Card number must be 13 to 16 digits">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="expiryDate" class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY"
+                                   class="basic-input" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" title="Format: MM/YY">
+                        </div>
+                        <div>
+                            <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="•••"
+                                   class="basic-input" pattern="[0-9]{3,4}" title="CVV must be 3 or 4 digits">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPI Payment Info (Initially Hidden) -->
+            <div id="upiPaymentInfo" class="basic-fieldset hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">UPI Details</h3>
+                <div class="flex items-end gap-3">
+                    <div class="flex-grow">
+                        <label for="upiId" class="block text-sm font-medium text-gray-700 mb-1">Your UPI ID</label>
+                        <input type="text" id="upiId" name="upiId" placeholder="e.g., yourname@bank"
+                               class="basic-input">
+                    </div>
+                    <button type="button" id="upiPayButton"
+                            class="px-5 py-2.5 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out shadow-lg">
+                        Pay Now
+                    </button>
+                </div>
+
+                <!-- QR Code Section for PC users -->
+                <div id="upiQrCodeSection" class="mt-6 text-center">
+                    <p class="text-gray-700 mb-2">Or scan QR code to pay (for PC users):</p>
+                    <img id="upiQrCode" src="" alt="UPI QR Code" class="mx-auto border border-gray-300 rounded-md p-2" style="width: 150px; height: 150px;">
+                    <p class="text-gray-600 text-xs mt-2">Scan this QR with any UPI app on your mobile.</p>
+                </div>
+
+                <p class="text-gray-700 mt-4 text-sm">Enter your UPI ID and click 'Pay Now' to open your UPI app.</p>
+                <p class="text-gray-600 text-xs mt-1">Please ensure your UPI app is installed on your device.</p>
+            </div>
+
+            <!-- Cash Payment Info (Initially Hidden) -->
+            <div id="cashPaymentInfo" class="basic-fieldset hidden">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Cash on Service</h3>
+                <p class="text-gray-700 text-sm">You will pay ₹ 500.00 in cash when the service is rendered.</p>
+                <p class="text-gray-600 text-xs mt-1">Please ensure you have the exact amount ready.</p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-end space-x-4 pt-6">
+                <button type="button" id="cancelButton"
+                        class="px-6 py-3 bg-gray-300 text-gray-800 rounded-md font-semibold hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-150 ease-in-out shadow-md">
+                    Cancel
+                </button>
+                <button type="submit" id="bookNowButton"
+                        class="px-6 py-3 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out shadow-lg">
+                    Book Now
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get references to elements
+        const radioCard = document.getElementById('radioCard');
+        const radioUpi = document.getElementById('radioUpi');
+        const radioCash = document.getElementById('radioCash');
+        const cardPaymentForm = document.getElementById('cardPaymentForm');
+        const upiPaymentInfo = document.getElementById('upiPaymentInfo');
+        const cashPaymentInfo = document.getElementById('cashPaymentInfo');
+        const upiIdInput = document.getElementById('upiId');
+        const upiPayButton = document.getElementById('upiPayButton');
+        const upiQrCode = document.getElementById('upiQrCode'); // New QR code image element
+        const bookingForm = document.getElementById('bookingForm');
+        const cancelButton = document.getElementById('cancelButton');
+        const bookNowButton = document.getElementById('bookNowButton');
+
+        // New state variable to track if UPI payment has been initiated
+        let upiPaymentInitiated = false;
+
+        // Function to generate and display QR code
+        function generateUpiQrCode() {
+            const servicePriceText = document.getElementById('price').textContent;
+            const amount = parseFloat(servicePriceText.replace('₹ ', '').trim()).toFixed(2);
+            const hardcodedUpiId = 'example@oksbi'; // The receiver's UPI ID
+            const upiLinkData = `upi://pay?pa=${hardcodedUpiId}&pn=ServiceProvider&am=${amount}&cu=INR&tn=ServiceBookingPayment`;
+            
+            // Using a public QR code API to generate the image
+            upiQrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(upiLinkData)}`;
+        }
+
+        // Function to toggle payment forms visibility and Book Now button state
+        function togglePaymentForms() {
+            // Hide all payment info sections initially
+            cardPaymentForm.classList.add('hidden');
+            upiPaymentInfo.classList.add('hidden');
+            cashPaymentInfo.classList.add('hidden');
+
+            // Reset UPI payment initiated state when payment method changes
+            upiPaymentInitiated = false;
+
+            // Remove required attribute from all payment-specific inputs
+            cardPaymentForm.querySelectorAll('input').forEach(input => input.removeAttribute('required'));
+            upiIdInput.removeAttribute('required');
+
+            if (radioCard.checked) {
+                cardPaymentForm.classList.remove('hidden');
+                // Make card fields required
+                cardPaymentForm.querySelectorAll('input').forEach(input => input.setAttribute('required', ''));
+                bookNowButton.disabled = false; // Enable Book Now for Card
+            } else if (radioUpi.checked) {
+                upiPaymentInfo.classList.remove('hidden');
+                upiIdInput.setAttribute('required', ''); // Make UPI ID input required
+                bookNowButton.disabled = false; // Enable Book Now for UPI by default
+                generateUpiQrCode(); // Generate QR code when UPI is selected
+            } else if (radioCash.checked) {
+                cashPaymentInfo.classList.remove('hidden');
+                bookNowButton.disabled = false; // Enable Book Now for Cash
+            }
+        }
+
+        // Add event listeners for all radio buttons
+        radioCard.addEventListener('change', togglePaymentForms);
+        radioUpi.addEventListener('change', togglePaymentForms);
+        radioCash.addEventListener('change', togglePaymentForms);
+
+        // Add event listener for UPI Pay button
+        upiPayButton.addEventListener('click', function() {
+            const upiId = upiIdInput.value; // Get the user-entered UPI ID
+            const servicePriceText = document.getElementById('price').textContent;
+            const amount = parseFloat(servicePriceText.replace('₹ ', '').trim()).toFixed(2); // Extract and format amount
+
+            if (!upiId) {
+                showModal('Please enter your UPI ID before clicking Pay Now.', 'error');
+                return;
+            }
+
+            // Construct UPI deep link with the hardcoded example@oksbi UPI ID
+            const hardcodedUpiId = 'example@oksbi';
+            const upiLink = `upi://pay?pa=${hardcodedUpiId}&pn=ServiceProvider&am=${amount}&cu=INR&tn=ServiceBookingPayment`;
+
+            // Attempt to redirect to the UPI app
+            window.location.href = upiLink;
+
+            // Set UPI payment initiated to true after attempting deep link
+            upiPaymentInitiated = true;
+            showModal('Attempting to open UPI app... Please complete the payment in your UPI app, then click "Book Now".', 'info');
+        });
+
+        // Initial call to set correct form visibility and button state on page load
+        document.addEventListener('DOMContentLoaded', togglePaymentForms);
+
+        // Handle form submission
+        bookingForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Check if UPI is selected
+            if (radioUpi.checked) {
+                // First, check if UPI ID is filled
+                if (!upiIdInput.value) {
+                    showModal('Please enter your UPI ID.', 'error');
+                    return; // Stop form submission
+                }
+                // Then, check if Pay Now has been clicked
+                if (!upiPaymentInitiated) {
+                    showModal('Please click "Pay Now" to initiate the UPI payment before booking your service. Or scan the QR code if you are on PC.', 'error');
+                    return; // Stop form submission
+                }
+            }
+
+            let paymentDetails = {};
+            if (radioCard.checked) {
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+
+                if (!cardNumber || !expiryDate || !cvv) {
+                    showModal('Please fill in all card details.', 'error');
+                    return;
+                }
+                paymentDetails = {
+                    method: 'Card',
+                    cardNumber: cardNumber,
+                    expiryDate: expiryDate,
+                    cvv: cvv
+                };
+            } else if (radioUpi.checked) {
+                // UPI ID is already validated above
+                paymentDetails = {
+                    method: 'UPI',
+                    upiId: upiIdInput.value
+                };
+            } else if (radioCash.checked) {
+                paymentDetails = {
+                    method: 'Cash on Service'
+                };
+            }
+
+            // Construct booking data
+            const bookingData = {
+                name: 'John Doe',
+                phone: '+919876543210',
+                address: '123 Main Street, Anytown, India',
+                servicePrice: document.getElementById('price').textContent,
+                serviceDate: '2025-08-15',
+                payment: paymentDetails
+            };
+
+            console.log('Booking Data:', bookingData);
+            showModal('Service Booked Successfully!\nCheck console for details.', 'success');
+        });
+
+        // Handle cancel button click
+        cancelButton.addEventListener('click', function() {
+            showConfirmModal('Are you sure you want to cancel the booking?', function() {
+                bookingForm.reset();
+                togglePaymentForms(); // Reset payment forms and button state
+                showModal('Booking cancelled.', 'info');
+            });
+        });
+
+        // --- Custom Modal Implementations (Instead of alert/confirm) ---
+
+        // Create a modal container if it doesn't exist
+        function createModalContainer() {
+            let modalContainer = document.getElementById('customModalContainer');
+            if (!modalContainer) {
+                modalContainer = document.createElement('div');
+                modalContainer.id = 'customModalContainer';
+                modalContainer.className = 'fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center z-50 hidden'; /* Darker gray overlay */
+                document.body.appendChild(modalContainer);
+            }
+            return modalContainer;
+        }
+
+        // Show a generic message modal
+        function showModal(message, type = 'info') {
+            const modalContainer = createModalContainer();
+            let bgColor = 'bg-blue-600'; // info
+            if (type === 'error') bgColor = 'bg-red-600';
+            else if (type === 'success') bgColor = 'bg-green-600';
+
+            modalContainer.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Message</h3> <!-- Gray heading -->
+                        <button class="text-gray-500 hover:text-gray-700" onclick="hideModal()">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-6">${message}</p>
+                    <button class="${bgColor} text-white px-4 py-2 rounded-md hover:opacity-90 transition duration-150 ease-in-out w-full" onclick="hideModal()">
+                        OK
+                    </button>
+                </div>
+            `;
+            modalContainer.classList.remove('hidden');
+        }
+
+        // Show a confirmation modal
+        function showConfirmModal(message, onConfirm) {
+            const modalContainer = createModalContainer();
+            modalContainer.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Confirm Action</h3> <!-- Gray heading -->
+                        <button class="text-gray-500 hover:text-gray-700" onclick="hideModal()">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-6">${message}</p>
+                    <div class="flex justify-end space-x-4">
+                        <button class="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition duration-150 ease-in-out" onclick="hideModal()">
+                            No
+                        </button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-150 ease-in-out" onclick="confirmAction();">
+                            Yes
+                        </button>
+                    </div>
+                </div>
+            `;
+            // Store the callback in a global property or similar for access
+            window.confirmAction = function() {
+                onConfirm();
+                hideModal();
+            };
+            modalContainer.classList.remove('hidden');
+        }
+
+        // Hide the modal
+        function hideModal() {
+            const modalContainer = document.getElementById('customModalContainer');
+            if (modalContainer) {
+                modalContainer.classList.add('hidden');
+            }
+            delete window.confirmAction; // Clean up the global callback
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<header class="bg-white text-gray-800 p-4 md:p-6 shadow-md">
+      <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-600 mb-4 md:mb-0">
+          <!-- A professional logo icon -->
+          <img src="./img/l.png" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-10 h-10 mr-2">
+          Quick Services
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+          <a href="index.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+          <a href="contact_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+          <a href="about_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+          <a href="my_booking.html" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+        </div>
+        
+        <!-- Auth Buttons -->
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <a href="sign_in.html" >
+            <button class="bg-white text-blue-700 font-semibold py-2 px-4 rounded-full border border-blue-700 hover:bg-blue-50 transition duration-300">Sign In</button>
+          </a>  
+            <!-- Dropdown container for Sign Up button -->
+            <div class="relative inline-block text-left">
+                <!-- Sign Up button to toggle the dropdown -->
+                <button id="signUpButton" class="bg-blue-700 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-800 transition duration-300 shadow-lg">
+                    Sign Up
+                </button>
+                
+                <!-- The dropdown menu, initially hidden -->
+                <div id="signUpDropdown" class="origin-top-center absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden left-1/2 -translate-x-1/2" role="menu" aria-orientation="vertical" aria-labelledby="signUpButton">
+                    <div class="py-1" role="none">
+                        <a href="customer_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Customer Sign Up</a>
+                        <a href="professional_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Professional Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signUpButton = document.getElementById('signUpButton');
+            const signUpDropdown = document.getElementById('signUpDropdown');
+
+            // Toggle the dropdown menu on button click
+            signUpButton.addEventListener('click', function() {
+                signUpDropdown.classList.toggle('hidden');
+            });
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function(event) {
+                if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                    signUpDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    </header>

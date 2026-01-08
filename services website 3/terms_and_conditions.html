@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms and Conditions | Quick Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="img/l.png" sizes="48x48" type="image/x-icon">
+
+      <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+      color: #374151;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 2rem;
+      }
+    }
+
+    .content-card {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    /* Ordered list custom counters */
+    ol {
+      list-style: none;
+      counter-reset: item;
+      padding-left: 1rem;
+    }
+
+    ol > li {
+      counter-increment: item;
+      position: relative;
+      padding-left: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    
+
+    ol li ol {
+      counter-reset: subitem;
+      margin-top: 0.5rem;
+    }
+
+    ol li ol > li {
+      counter-increment: subitem;
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    
+    ol li ol > li::before {
+      content: counter(item) "." counter(subitem) ".";
+      position: absolute;
+      left: 0;
+      font-weight: normal;
+      color: #4b5563;
+    }
+
+    ol li ol li ol {
+      counter-reset: subsubitem;
+    }
+
+    ol li ol li ol > li {
+      counter-increment: subsubitem;
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    ol li ol li ol > li::before {
+      content: counter(item) "." counter(subitem) "." counter(subsubitem) ".";
+      position: absolute;
+      left: 0;
+      font-weight: lighter;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <header class="bg-white p-4 md:p-6 shadow-md">
+        <nav class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-600 mb-4 md:mb-0">
+                <img src="./img/l.png" class="w-10 h-10 mr-2" alt="Quick Services Logo">
+                Quick Services
+            </div>
+
+            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+                <a href="index.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+                <a href="contact_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+                <a href="about_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+                <a href="my_booking.html" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+            </div>
+
+            <div class="flex items-center space-x-4 mt-4 md:mt-0">
+                <a href="sign_in.html">
+                    <button class="bg-white text-blue-700 font-semibold py-2 px-4 rounded-full border border-blue-700 hover:bg-blue-50 transition duration-300">Sign In</button>
+                </a>
+                <div class="relative inline-block text-left">
+                    <button id="signUpButton" class="bg-blue-700 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-800 transition duration-300 shadow-lg">
+                        Sign Up
+                    </button>
+                    <div id="signUpDropdown" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="signUpButton">
+                        <div class="py-1" role="none">
+                            <a href="customer_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Customer Sign Up</a>
+                            <a href="professional_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Professional Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const signUpButton = document.getElementById('signUpButton');
+                const signUpDropdown = document.getElementById('signUpDropdown');
+
+                signUpButton.addEventListener('click', function() {
+                    signUpDropdown.classList.toggle('hidden');
+                });
+
+                window.addEventListener('click', function(event) {
+                    if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                        signUpDropdown.classList.add('hidden');
+                    }
+                });
+            });
+        </script>
+    </header>
+
+    <main class="bg-gray-50 text-gray-800">
+        <div class="container mx-auto mt-8">
+            <div class="content-card">
+                <h1 class="text-center text-3xl md:text-4xl font-bold text-grey-900 mb-2">TERMS AND CONDITIONS</h1>
+                <p class="text-center text-gray-500 mb-8">Last Updated: 7th April, 2025</p>
+
+                <p class="mb-4">These terms and conditions (“<strong>Terms</strong>”) govern the use of services made available on or through https://www.urbancompany.com and/or the Urban Company mobile app (collectively, the “<strong>Platform</strong>”, and together with the services made available on or through the Platform, the “<strong>Services</strong>”). These Terms also include our privacy policy, available at https://www.urbancompany.com/privacy-policy (“<strong>Privacy Policy</strong>”), and any guidelines, additional, or supplemental terms, policies, and disclaimers made available or issued by us from time to time (“<strong>Supplemental Terms</strong>”). The Privacy Policy and the Supplemental Terms form an integral part of these Terms. In the event of a conflict between these Terms and the Supplemental Terms with respect to applicable Services, the Supplemental Terms will prevail.</p>
+
+                <p class="mb-4">The Terms constitute a binding and enforceable legal contract between Urban Company Limited (a company incorporated under the Companies Act, 2013 with its registered address at Unit No. 08, Ground Floor, Rectangle 1, D4, Saket District Centre New Delhi - 110017, India, and its principal place of business at 7th Floor, Plot no. 183, Goworks Towers, Rajiv Nagar, Udyog Vihar, Phase 2, Sector 20, Gurgaon - 122016, India and its affiliates, formerly known as UrbanClap Technologies India Pvt. Ltd.) (“<strong>UC</strong>”, “<strong>we</strong>”, “<strong>us</strong>”, or “<strong>our</strong>”), and you, a user of the Services, or any legal entity that books Pro Services (defined below) on behalf of end-users (“<strong>you</strong>” or “<strong>Customer</strong>”). By using the Services, you represent and warrant that you have full legal capacity and authority to agree to and bind yourself to these Terms. If you represent any other person, you confirm and represent that you have the necessary power and authority to bind such person to these Terms.</p>
+
+                <p class="mb-4">By using the Services, you agree that you have read, understood, and are bound by, these Terms, as amended from time to time, and that you will comply with the requirements listed here. These Terms expressly supersede any prior written agreements with you. If you do not agree to these Terms, or comply with the requirements listed here, please do not use the Services.</p>
+
+                <ol class=" pl-6 space-y-4">
+                    <li class="mb-4">
+                        <h2 class="text-xl font-bold mt-4 mb-2">1. SERVICES</h2>
+                        <ul class="list-decimal pl-6 space-y-2">
+                            <li class="mb-2">The Services include the provision of the Platform that enables you to arrange and schedule different home-based services with independent third-party service providers of those services (“<strong>Service Professionals</strong>”). As a part of the Services, UC facilitates the transfer of payments to Service Professionals for the services they render to you and collects payments on behalf of such Service Professionals.</li>
+                            <li class="mb-2">The services rendered by Service Professionals are referred to as “<strong>Pro Services</strong>”. The term “Services” does not include the Pro Services. UC does not provide the Pro Services and is not responsible their provision. Service Professionals are solely liable and responsible for the Pro Services that they offer or otherwise provide through the Platform. UC and its affiliates do not employ Service Professionals, nor are Service Professionals agents, contractors, or partners of UC or its affiliates. Service Professionals do not have the ability to bind or represent UC.</li>
+                            <li class="mb-2">The Platform is for your personal and non-commercial use only, unless otherwise agreed upon on in accordance with the terms of a separate agreement. Please note that the Platform is intended for use only within India. You agree that in the event you avail the Services or Pro Services from a legal jurisdiction other than the territory of India, you will be deemed to have accepted the UC terms and conditions applicable to that jurisdiction.</li>
+                            <li class="mb-2">The Services are made available under various brands owned by or otherwise licensed to UC and its affiliates.</li>
+                            <li class="mb-2">A key part of the Services is UC’s ability to send you text messages, electronic mails, or WhatsApp messages, including in connection with your bookings, your utilisation of the Services, or as a part of its promotional and marketing strategies. While you may opt out of receiving these text messages by contacting UC at privacy@urbancompany.com or through the in-Platform settings , you agree and acknowledge that this may impact UC’s ability to provide the Services (or a part of the Services) to you.</li>
+                            <li class="mb-2">In certain instances, you may be required to furnish identification proof to avail the Services or the Pro Services, and hereby agree to do so. A failure to comply with this request may result in your inability to use the Services or Pro Services.</li>
+                            <li class="mb-2"><strong>UC Credits</strong>:
+                                <ul class="list-disc pl-6 mt-2 space-y-1">
+                                    <li>UC may, in its sole discretion, offer promotional codes that may be redeemed for credits, other features or benefits related to the Services, and/or Pro Services, subject to any additional terms that may apply on a promotional code (“<strong>UC Credits</strong>”).</li>
+                                    <li>You agree that (i) you shall use UC Credits in a lawful manner, and only for the purposes specified by such UC Credits, (ii) you shall not duplicate, sell, or transfer the UC Credits in any manner (including by posting such codes on a public forum) unless you have UC’s express prior consent to do so, (iii) UC Credits may be disabled by UC at any time for any reason without any liability to you, (iv) UC Credits are not valid for cash, and (v) UC Credits may expire prior to your use.</li>
+                                    <li>UC may, at its sole discretion, provide only certain users with UC Credits that may result in different amounts charged for the same or similar services obtained by other users.</li>
+                                    <li>UC reserves the right to withhold or deduct credits or other features or benefits obtained through the use of UC Credits, by you or any other user, if UC reasonably determines or believes that the use or redemption of the UC Credits was in error, fraudulent, illegal, or in violation of the applicable UC Credit terms or these Terms.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="mb-4">
+                        <h2 class="text-xl font-bold mt-4 mb-2">2. ACCOUNT CREATION</h2>
+                        <ul class="list-decimal pl-6 space-y-2">
+                            <li class="mb-2">To avail the Services, you will be required to create an account on the Platform (“<strong>Account</strong>”). For this Account, you may be required to furnish certain details, including but not limited to your phone number. To create an Account, you must be at least 18 years of age.</li>
+                            <li class="mb-2">You warrant that all information furnished in connection with your Account is and shall remain accurate and true. You agree to promptly update your details on the Platform in the event of any change to or modification of this information.</li>
+                            <li class="mb-2">You are solely responsible for maintaining the security and confidentiality of your Account and agree to immediately notify us of any disclosure or unauthorised use of your Account or any other breach of security with respect to your Account.</li>
+                            <li class="mb-2">You are liable and accountable for all activities that take place through your Account, including activities performed by persons other than you. We shall not be liable for any unauthorised access to your Account.</li>
+                            <li class="mb-2">You agree to receive communications from us regarding (i) requests for payments, (ii) information about us and the Services, (iii) promotional offers and services from us and our third party partners, and (iv) any other matter in relation to the Services.</li>
+                        </ul>
+                    </li>
+                    <li class="mb-4">
+                        <h2 class="text-xl font-bold mt-4 mb-2">3. USER CONTENT</h2>
+                        <ul class="list-decimal pl-6 space-y-2">
+                            <li class="mb-2">Our Platform may contain interactive features or services that allow users who have created an account with us to post, upload, publish, display, transmit, or submit comments, reviews, suggestions, feedback, ideas, or other content on or through the Platform (“<strong>User Content</strong>”).</li>
+                            <li class="mb-2">As part of the effective provision of the Services and quality control purposes, we may request reviews from you about Service Professionals and you agree and acknowledge that Service Professionals may provide reviews about you to us. You must not knowingly provide false, inaccurate, or misleading information in respect of the reviews. Reviews will be used by us for quality control purposes and to determine whether Customers and Service Professionals are appropriate users of the Platform. If we determine at our sole discretion that you are not an appropriate user, we reserve the right to cancel your registration and remove you from our Platform.</li>
+                            <li class="mb-2">You grant us a non-exclusive, worldwide, perpetual, irrevocable, transferable, sublicensable, and royalty-free licence to (i) use, publish, display, store, host, transfer, process, communicate, distribute, make available, modify, adapt, translate, and create derivative works of, the User Content, for the functioning of, and in connection with, the Services and (ii) use User Content for the limited purposes of advertising and promoting the Services, or furnishing evidence before a court or authority of competent jurisdiction under applicable laws.</li>
+                            <li class="mb-2">In connection with these Terms and the licences granted under this clause, you hereby waive any claims arising out of any moral rights or other similar rights relating to the User Content.</li>
+                            <li class="mb-2">You agree and acknowledge that UC may, without notice to you, remove, or otherwise restrict access to User Content that, in its sole discretion, violates these Terms.</li>
+                        </ul>
+                    </li>
+                    <li class="mb-4">
+                        <h2 class="text-xl font-bold mt-4 mb-2">4. CONSENT TO USE DATA</h2>
+                        <ul class="list-decimal pl-6 space-y-2">
+                            <li class="mb-2">You agree that we may, in accordance with our Privacy Policy, collect and use your personal data. The Privacy Policy is available at https://www.urbancompany.com/privacy-policy and it explains the categories of personal data that we collect or otherwise process about you and the manner in which we process such data.</li>
+                            <li class="mb-2">In addition to any consent you may provide pursuant to the Privacy Policy, you hereby consent to us sharing your information with our affiliates or other third party service providers. We may use information and data pertaining to your use of the Services for provision of the Services, analytics, trend identification, and purposes of statistics to further enhance the effectiveness and efficiency of our Services, and provision of beneficial schemes, new offers, and for experience enhancement.</li>
+                            <li class="mb-2">Subject to applicable laws, we may be directed by law enforcement agencies or the government and related bodies to disclose data in relation to you in connection with criminal or civil proceedings. You understand and agree that in such instances we shall have the right to share such data with relevant agencies or bodies.</li>
+                        </ul>
+                    </li>
+                    <li class="mb-4">
+                        <h2 class="text-xl font-bold mt-4 mb-2">5. BOOKINGS</h2>
+                        <ul class="list-decimal pl-6 space-y-2">
+                            <li class="mb-2"><strong>Orders</strong>: The Platform permits you to request various Pro Services at a time of your choosing based on available slots. To make a booking, you should follow the instructions on the Platform and provide necessary information. We use reasonable efforts to enable you to find a Service Professional who is able to provide that service at the requested time. If, in the unlikely event we cannot find a Service Professional for the specific timeslot, we will contact you to find an alternative time.</li>
+                            <li class="mb-2"><strong>Confirmation</strong>: Once you place a request we will provide confirmation of the booking via SMS, email or a push notification. Once your booking has been confirmed, you will be required to make the payment in accordance with the payment terms provided.</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 p-8 mt-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+                <h4 class="text-xl font-semibold mb-4 text-blue-700">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="about_us.html" class="hover:text-blue-500 transition duration-300">About us</a></li>
+                    <li><a href="terms_and_conditions.html" class="hover:text-blue-500 transition duration-300">Terms & Conditions</a></li>
+                    <li><a href="privacy_policy.html" class="hover:text-blue-500 transition duration-300">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-semibold mb-4 text-blue-700">For Customers</h4>
+                <ul class="space-y-2">
+                    <li><a href="contact_us.html" class="hover:text-blue-500 transition duration-300">Contact us</a></li>
+                    <li><a href="review.html" class="hover:text-blue-500 transition duration-300">User Reviews</a></li>
+                    <li><a href="my_booking.html" class="hover:text-blue-500 transition duration-300">My Bookings</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-semibold mb-4 text-blue-700">For Professionals</h4>
+                <ul class="space-y-2">
+                    <li><a href="professional_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a professional</a></li>
+                    <li><a href="customer_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a customer</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-semibold mb-4 text-blue-700">Social links</h4>
+                <div class="flex space-x-3">
+                    <a href="#" class="social-link-btn" aria-label="Facebook">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="#" class="social-link-btn" aria-label="Twitter">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                    <a href="#" class="social-link-btn" aria-label="Instagram">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="#" class="social-link-btn" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center text-sm text-gray-500 mt-8">
+            <p>&copy; 2025 Quick Services. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

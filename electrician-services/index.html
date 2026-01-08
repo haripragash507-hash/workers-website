@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanCool - Electrician Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="electrician.js"></script>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>UrbanCool Electrician Services</h1>
+      <p>Safe. Quick. Professional. Hire verified electricians at your doorstep.</p>
+      <a href="#book" class="btn-primary">Book Now</a>
+    </div>
+    <div class="hero-img">
+      <img src="https://www.urbancompany.com/_next/image?url=%2Fimages%2Felectrician.jpg&w=1080&q=75"
+        alt="Electrician" onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/333333?text=Electrician'" />
+    </div>
+  </section>
+
+ <section class="services">
+  <h2>Electrician Services Offered</h2>
+  <div class="service-container">
+
+    <div class="service-card">
+      <h3>1. Fan Installation / Repair</h3>
+      <p>Installation and servicing of ceiling, pedestal, or exhaust fans. Includes mounting, wiring, balancing blades, and resolving noise or speed issues. Ideal for new fan setups or fixing malfunctioning units.</p>
+      <p><strong>Price:</strong> ₹199 onwards</p>
+    </div>
+
+    <div class="service-card">
+      <h3>2. Light Fitting / LED Installation</h3>
+      <p>Installation of decorative lights, LED panels, tube lights, chandeliers, and more. Includes secure mounting, connection to existing electrical systems, and functionality checks. We also offer energy-efficient lighting consultations.</p>
+      <p><strong>Price:</strong> ₹149 onwards</p>
+    </div>
+
+    <div class="service-card">
+      <h3>3. Switchboard & Socket Repair</h3>
+      <p>Repair and replacement of damaged or burnt switches, sockets, modular boards, and faceplates. All services include safety checks and secure rewiring to prevent future faults or short circuits.</p>
+      <p><strong>Price:</strong> ₹99 – ₹299 depending on complexity</p>
+    </div>
+
+    <div class="service-card">
+      <h3>4. Full Home Wiring (Consultation)</h3>
+      <p>Expert consultation for new construction or renovation projects. We provide wiring layout plans, load calculations, material estimates, and safety assessments. Execution also available on request.</p>
+      <p><strong>Price:</strong> ₹399 for consultation</p>
+    </div>
+
+    <div class="service-card">
+      <h3>5. Inverter Installation / Setup</h3>
+      <p>End-to-end inverter setup including battery integration, connection to main board, earthing validation, and load testing. Suitable for both new installations and system upgrades.</p>
+      <p><strong>Price:</strong> ₹499 onwards</p>
+    </div>
+
+    <div class="service-card">
+      <h3>6. MCB, Fuse & DB Repairs</h3>
+      <p>MCB tripping issues, fuse replacements, and distribution board upgrades are handled by trained technicians. Includes short circuit diagnostics and overload protection solutions for safety assurance.</p>
+      <p><strong>Price:</strong> ₹249 – ₹599</p>
+    </div>
+
+    <div class="service-card">
+      <h3>7. Emergency Power Issue Handling</h3>
+      <p>We provide emergency fault resolution for power outages, sparks, burning smells, and exposed wires. Our electricians ensure quick restoration of services with complete safety gear and tools.</p>
+      <p><strong>Price:</strong> ₹299 onwards</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <section class="reviews">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews-container">
+      <div class="review-card">
+        <p>"Electrician was super punctual and installed 3 ceiling fans in no time. Great service!"</p>
+        <strong>– Anjali S.</strong>
+      </div>
+      <div class="review-card">
+        <p>"They fixed my power trip issue in 15 minutes. Highly professional and polite."</p>
+        <strong>– Vikram R.</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="book">
+    <h2>Book Your Electrician</h2>
+    <form id="bookingForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <select id="serviceType" required>
+        <option value="">Choose Service</option>
+        <option value="fan">Fan Installation</option>
+        <option value="light">Light Installation</option>
+        <option value="switchboard">Switch Repair</option>
+        <option value="inverter">Inverter Setup</option>
+      </select>
+      <input type="date" id="date" required />
+      <button type="submit" class="btn-submit">Submit</button>
+      <p id="formMessage"></p>
+    </form>
+  </section>
+</body>
+</html>

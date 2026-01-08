@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font 'Inter' for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sign In | Qucik Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="img/l.png" sizes="48x48" type="image/x-icon">
+
+
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A light gray background */
+        }
+    </style>
+</head>
+
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-white text-gray-800 p-4 md:p-6 shadow-md">
+      <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-600 mb-4 md:mb-0">
+          <!-- A professional logo icon -->
+          <img src="./img/l.png" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-10 h-10 mr-2">
+          Quick Services
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+          <a href="index.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+          <a href="contact_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+          <a href="about_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+          <a href="my_booking.html" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+        </div>
+        
+        <!-- Auth Buttons -->
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <a href="sign_in.html" >
+            <button class="bg-white text-blue-700 font-semibold py-2 px-4 rounded-full border border-blue-700 hover:bg-blue-50 transition duration-300">Sign In</button>
+          </a>  
+            <!-- Dropdown container for Sign Up button -->
+            <div class="relative inline-block text-left">
+                <!-- Sign Up button to toggle the dropdown -->
+                <button id="signUpButton" class="bg-blue-700 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-800 transition duration-300 shadow-lg">
+                    Sign Up
+                </button>
+                
+                <!-- The dropdown menu, initially hidden -->
+                <div id="signUpDropdown" class="origin-top-center absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden left-1/2 -translate-x-1/2" role="menu" aria-orientation="vertical" aria-labelledby="signUpButton">
+                    <div class="py-1" role="none">
+                        <a href="customer_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Customer Sign Up</a>
+                        <a href="professional_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Professional Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signUpButton = document.getElementById('signUpButton');
+            const signUpDropdown = document.getElementById('signUpDropdown');
+
+            // Toggle the dropdown menu on button click
+            signUpButton.addEventListener('click', function() {
+                signUpDropdown.classList.toggle('hidden');
+            });
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function(event) {
+                if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                    signUpDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    </header>
+
+
+
+    <main class="flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
+        <!-- Header section of the sign-in card -->
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-blue-700">Qucik Services</h1>
+            <h3 class="text-2xl font-medium text-gray-900 mt-2">Welcome Back!</h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Sign in to access your account.
+            </p>
+        </div>
+
+        <!-- The sign-in form -->
+        <form id="signInForm" class="mt-8 space-y-6">
+            <!-- Message box for displaying errors -->
+            <div id="messageBox" class="p-4 hidden text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+                <!-- Error messages will be inserted here -->
+            </div>
+            <div class="space-y-4">
+                <!-- Email input field -->
+                <div>
+                    <label for="email-address" class="sr-only">Email address</label>
+                    <input id="email-address" name="email" type="email" autocomplete="email" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                </div>
+                <!-- Password input field -->
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                </div>
+            </div>
+
+            <!-- Forgot password link and sign-in button container -->
+            <div class="flex items-center justify-between">
+                <div class="text-sm">
+                    <a href="forget_password.html" class="font-medium text-blue-600 hover:text-blue-800">
+                        Forgot your password?
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md group hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign in
+                </button>
+            </div>
+        </form>
+
+        <!-- Sign up link -->
+        <div class="text-center text-sm text-gray-600">
+            Don't have an account? 
+            <a href="customer_sign_up.html" class="font-medium text-blue-600 hover:text-blue-800">
+                Customer Sign up
+            </a>
+            <br>
+            <p class="mt-2">
+            <a href="professional_sign_up.html" class="font-medium text-blue-600 hover:text-blue-800">
+                professional Sign up
+            </a>
+            </p>
+
+        </div>
+    </div>
+
+    <script>
+        // Get the form and message box elements
+        const form = document.getElementById('signInForm');
+        const messageBox = document.getElementById('messageBox');
+        const emailInput = document.getElementById('email-address');
+        const passwordInput = document.getElementById('password');
+
+        // Add a submit event listener to the form
+        form.addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            
+            // Clear any previous messages
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+
+            // Get the values from the input fields
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Perform simple front-end validation
+            if (!email || !password) {
+                messageBox.textContent = 'Please enter both email and password.';
+                messageBox.classList.remove('hidden');
+            } else {
+                // If validation passes, you would typically send this data to a backend.
+                // For this example, we'll just log it to the console.
+                console.log('Sign-in attempt with:');
+                console.log('Email:', email);
+                console.log('Password:', password);
+                
+                // You could then redirect the user or show a success message
+                // messageBox.textContent = 'Sign-in successful!';
+                // messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                // messageBox.classList.add('bg-green-100', 'text-green-700');
+            }
+        });
+    </script>
+    </main>
+    <!-- Main container for the sign-in card -->
+     <footer class="bg-gray-900 text-gray-400 p-8 mt-12">
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about_us.html" class="hover:text-blue-500 transition duration-300">About us</a></li>
+            <li><a href="terms_and_conditions.html" class="hover:text-blue-500 transition duration-300">Terms & Conditions</a></li>
+            <li><a href="privacy_policy.html" class="hover:text-blue-500 transition duration-300">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Customers Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Customers</h4>
+          <ul class="space-y-2">
+            <li><a href="contact_us.html" class="hover:text-blue-500 transition duration-300">Contact us</a></li>
+            <li><a href="review.html" class="hover:text-blue-500 transition duration-300">User Reviews</a></li>
+            <li><a href="my_booking.html" class="hover:text-blue-500 transition duration-300">My Bookings</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Professionals Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Professionals</h4>
+          <ul class="space-y-2">
+            <li><a href="professional_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a professional</a></li>
+            <li><a href="customer_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a customer</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links Section -->
+        <div> <!-- Added margin-top for spacing -->
+            <h4 class="text-xl font-semibold mb-4 text-blue-700">Social links</h4>
+            <div  class="flex space-x-3">
+                <!-- Facebook -->
+                <a href="#" class="social-link-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+                <!-- Twitter -->
+                <a href="#" class="social-link-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="#" class="social-link-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#" class="social-link-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+            </div>
+        </div>
+      
+      <div class="text-center text-sm text-gray-500 mt-8">
+        <p>&copy; 2025 CompanyName. All rights reserved.</p>
+      </div>
+    </footer>
+    
+</body>
+</html>

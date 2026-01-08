@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for the message modal */
+        #message-modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease-in-out;
+        }
+        #message-modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        #message-modal.show #message-modal-content {
+            transform: translateY(0);
+        }
+        /* Custom styles for the services modal */
+        #services-modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease-in-out;
+        }
+        #services-modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        #services-modal.show #services-modal-content {
+            transform: translateY(0);
+        }
+        /* Custom styles for the profile modal */
+        #profile-modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease-in-out;
+        }
+        #profile-modal-content {
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        #profile-modal.show #profile-modal-content {
+            transform: translateY(0);
+        }
+        /* Styles for the dropdown menu */
+        .dropdown-content {
+            display: none;
+        }
+        .show-dropdown {
+            display: table-row !important;
+        }
+        /* Custom styles for dropdown arrow */
+        .dropdown-arrow {
+            transition: transform 0.3s ease-in-out;
+        }
+        .dropdown-arrow.rotate {
+            transform: rotate(180deg);
+        }
+        /* Hide scrollbar for the sidebar */
+        .sidebar-nav::-webkit-scrollbar {
+            display: none;
+        }
+        .sidebar-nav {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Custom modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 90%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 transition-colors duration-300">
+
+    <div class="flex h-screen">
+        <button id="sidebar-toggle-btn" class="fixed top-4 left-4 z-50 p-2 md:hidden text-gray-800 bg-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+
+        <aside id="sidebar" class="bg-gray-800 text-gray-200 w-64 h-screen fixed top-0 left-0 p-4 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-40 md:z-auto">
+            <div class="flex items-center justify-between h-16 border-b border-gray-700">
+                <span class="text-2xl font-bold text-teal-400">Admin Panel</span>
+                <button id="close-sidebar-btn" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+            <nav class="mt-8">
+                <ul>
+                    <li class="mb-2">
+                        <button data-page="dashboard" class="nav-button flex items-center w-full px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                            <span class="ml-3 font-medium">Dashboard</span>
+                        </button>
+                    </li>
+                    <li class="mb-2">
+                        <button data-page="customers" class="nav-button flex items-center w-full px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span class="ml-3 font-medium">My customers</span>
+                        </button>
+                    </li>
+                    <li class="mb-2">
+                        <button data-page="reviews" class="nav-button flex items-center w-full px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <i data-lucide="star" class="w-5 h-5"></i>
+                            <span class="ml-3 font-medium">My Reviews</span>
+                        </button>
+                    </li>
+                    <li class="mb-2">
+                        <button data-page="services" class="nav-button flex items-center w-full px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                            <span class="ml-3 font-medium">My Services</span>
+                        </button>
+                    </li>
+                    <li class="mb-2">
+                        <button data-page="profile" class="nav-button flex items-center w-full px-4 py-2 rounded-lg transition-colors duration-200 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            <i data-lucide="user-cog" class="w-5 h-5"></i>
+                            <span class="ml-3 font-medium">My Profile</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="flex-1 flex flex-col md:ml-64">
+            <header class="flex items-center justify-between bg-white shadow-md p-4 sticky top-0 z-30 transition-colors duration-300">
+                <h1 class="text-2xl font-bold text-gray-800" id="header-title">Dashboard</h1>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-700 font-medium hidden sm:block">Admin User</span>
+                    <div class="h-10 w-10 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold">
+                        <span>AU</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6 md:p-10">
+                <div id="dashboard-page" class="content-page">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center justify-between transform hover:scale-105 transition-transform duration-200">
+                            <div>
+                                <p class="text-sm text-gray-500">Total Customers</p>
+                                <h2 class="text-3xl font-bold text-gray-800 mt-1">1,250</h2>
+                            </div>
+                            <div class="p-3 rounded-full bg-teal-500 text-white shadow-lg">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center justify-between transform hover:scale-105 transition-transform duration-200">
+                            <div>
+                                <p class="text-sm text-gray-500">Total Orders</p>
+                                <h2 class="text-3xl font-bold text-gray-800 mt-1">5,432</h2>
+                            </div>
+                            <div class="p-3 rounded-full bg-blue-500 text-white shadow-lg">
+                                <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center justify-between transform hover:scale-105 transition-transform duration-200">
+                            <div>
+                                <p class="text-sm text-gray-500">Revenue</p>
+                                <h2 class="text-3xl font-bold text-gray-800 mt-1">$75,123</h2>
+                            </div>
+                            <div class="p-3 rounded-full bg-indigo-500 text-white shadow-lg">
+                                <i data-lucide="credit-card" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-between transform hover:scale-105 transition-transform duration-200">
+                            <div>
+                                <p class="text-sm text-gray-500">Pending Orders</p>
+                                <h2 class="text-3xl font-bold text-gray-800 mt-1">24</h2>
+                            </div>
+                            <button id="view-pending-btn" class="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-md">
+                                View All
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="customers-page" class="content-page hidden">
+                    <section class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-4">My Orders</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white rounded-lg">
+                                <thead>
+                                    <tr class="bg-gray-50 text-left text-gray-600 uppercase text-sm leading-normal">
+                                        <th scope="col" class="py-3 px-6 rounded-tl-lg">ORDER ID</th>
+                                        <th scope="col" class="py-3 px-6">SERVICE</th>
+                                        <th scope="col" class="py-3 px-6">STATUS</th>
+                                        <th scope="col" class="py-3 px-6 rounded-tr-lg">ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-table-body" class="text-gray-700 text-base">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <div id="warningModal" class="modal">
+                    <div class="modal-content">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Cancellation Warning</h3>
+                        <p id="warningMessage" class="text-gray-700 mb-6">
+                            Warning: If you cancel this order, your scores will decrease, and you may have to pay a penalty based on your scores.
+                        </p>
+                        <div class="flex justify-center space-x-4">
+                            <button id="cancelWarningBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                                Cancel
+                            </button>
+                            <button id="confirmCancelBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="messageModal" class="modal">
+                    <div class="modal-content">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">Information</h3>
+                        <p id="generalMessageContent" class="text-gray-700 mb-6"></p>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" onclick="closeMessageModal()">OK</button>
+                    </div>
+                </div>
+
+                <div id="reviews-page" class="content-page hidden">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">My Reviews</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center font-bold text-blue-600">
+                                    JD
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-bold text-gray-800">Jane Doe</p>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star-half" class="h-5 w-5 fill-current"></i>
+                                        <span class="ml-2 text-gray-500 text-sm">4.5/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 flex-grow">
+                                "The service was excellent! The professional was very knowledgeable and completed the job ahead of schedule. Highly recommended."
+                            </p>
+                            <span class="text-sm text-gray-500 mt-4 self-end">
+                                Reviewed on July 29, 2024
+                            </span>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                            <div class="flex items-center mb-4">
+                                <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center font-bold text-green-600">
+                                    AJ
+                                </div>
+                                <div class="ml-4">
+                                    <p class="font-bold text-gray-800">Alex Johnson</p>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
+                                        <span class="ml-2 text-gray-500 text-sm">5/5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 flex-grow">
+                                "Couldn't be happier with the results! A true professional who delivered exactly what I needed. Will definitely hire again."
+                            </p>
+                            <span class="text-sm text-gray-500 mt-4 self-end">
+                                Reviewed on July 28, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="services-page" class="content-page hidden">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-3xl font-bold text-gray-800">My Services</h2>
+                            <button id="add-service-btn" class="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-md flex items-center space-x-2">
+                                <i data-lucide="plus" class="w-5 h-5"></i>
+                                <span>Add</span>
+                            </button>
+                        </div>
+                        <ul id="services-list" class="divide-y divide-gray-200">
+                            </ul>
+                    </div>
+                </div>
+
+                <div id="profile-page" class="content-page hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-3xl font-bold text-gray-800">My Profile</h2>
+                        <button id="edit-profile-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-md flex items-center space-x-2">
+                            <i data-lucide="pencil" class="w-5 h-5"></i>
+                            <span>Edit</span>
+                        </button>
+                    </div>
+                    <div id="profile-display-card" class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="mb-4">
+                            <p class="text-sm font-semibold text-gray-500">Full Name</p>
+                            <p id="profile-display-name" class="text-lg text-gray-800 mt-1 font-medium"></p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm font-semibold text-gray-500">Mobile Number</p>
+                            <p id="profile-display-mobile" class="text-lg text-gray-800 mt-1 font-medium"></p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-gray-500">Address</p>
+                            <p id="profile-display-address" class="text-lg text-gray-800 mt-1 font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="message-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div id="message-modal-content" class="bg-white rounded-xl shadow-2xl p-6 w-96 transform scale-95 transition-transform duration-300">
+            <h3 id="modal-title" class="text-lg font-bold mb-2 text-gray-800"></h3>
+            <p id="modal-message" class="text-gray-600"></p>
+            <button onclick="closeModal()" class="mt-4 w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <div id="services-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div id="services-modal-content" class="bg-white rounded-xl shadow-2xl p-6 w-11/12 max-w-lg transform scale-95 transition-transform duration-300">
+            <h3 class="text-lg font-bold mb-4 text-gray-800">Select Your Services</h3>
+            <div id="services-checkboxes" class="space-y-3 mb-6 max-h-64 overflow-y-auto pr-2">
+                </div>
+            <div class="flex space-x-2 mb-4">
+                <button id="select-all-btn" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                    All
+                </button>
+                <button id="reset-services-btn" class="flex-1 bg-red-100 hover:bg-red-200 text-red-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                    Reset
+                </button>
+            </div>
+            <div class="flex space-x-4">
+                <button id="save-services-btn" class="flex-1 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-md">
+                    Save
+                </button>
+                <button onclick="closeServicesModal()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div id="profile-modal-content" class="bg-white rounded-xl shadow-2xl p-6 w-11/12 max-w-lg transform scale-95 transition-transform duration-300">
+            <h3 class="text-lg font-bold mb-4 text-gray-800">Edit Profile</h3>
+            <form id="profile-form">
+                <div class="mb-4">
+                    <label for="full-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="full-name" name="fullName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" required>
+                </div>
+                <div class="mb-4">
+                    <label for="mobile-number" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                    <input type="tel" id="mobile-number" name="mobileNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" required>
+                </div>
+                <div class="mb-4">
+                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                    <textarea id="address" name="address" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" required></textarea>
+                </div>
+                <div class="flex space-x-4 mt-6">
+                    <button type="submit" class="flex-1 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 shadow-md">
+                        Save Changes
+                    </button>
+                    <button type="button" onclick="closeProfileModal()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // Mock data
+        const mockCustomers = [
+            {
+                orderId: '4533',
+                name: 'John Doe',
+                mobile: '123-456-7890',
+                address: '123 Main St, Anytown, USA',
+                service: 'Battery Check & Replacement',
+                servicePrize: '$50.00',
+                status: 'Completed',
+            },
+            {
+                orderId: '4532',
+                name: 'Jane Smith',
+                mobile: '987-654-3210',
+                address: '456 Oak Ave, Somewhere, USA',
+                service: 'AC Installation',
+                servicePrize: '$75.50',
+                status: 'Pending',
+            },
+            {
+                orderId: '4531',
+                name: 'Peter Jones',
+                mobile: '555-111-2222',
+                address: '789 Pine Ln, Nowhere, USA',
+                service: 'Fan Installation',
+                servicePrize: '$120.00',
+                status: 'Cancelled',
+            },
+        ];
+
+        const mockServices = [
+            { name: 'Plumbing', id: 'service-1' },
+            { name: 'Electrician', id: 'service-2' },
+            { name: 'AC-Service', id: 'service-3' },
+        ];
+
+        const mockProfile = {
+            fullName: 'Admin User',
+            mobileNumber: '123-456-7890',
+            address: '456 Tech Lane, Silicon Valley, CA 94043'
+        };
+
+        // DOM elements
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        const navButtons = document.querySelectorAll('.nav-button');
+        const contentPages = document.querySelectorAll('.content-page');
+        const headerTitle = document.getElementById('header-title');
+        const ordersTableBody = document.getElementById('orders-table-body');
+        const servicesList = document.getElementById('services-list');
+        const addServiceBtn = document.getElementById('add-service-btn');
+        const selectAllBtn = document.getElementById('select-all-btn');
+        const resetServicesBtn = document.getElementById('reset-services-btn');
+        const saveServicesBtn = document.getElementById('save-services-btn');
+        const servicesCheckboxesContainer = document.getElementById('services-checkboxes');
+        const servicesModal = document.getElementById('services-modal');
+        const editProfileBtn = document.getElementById('edit-profile-btn');
+        const profileModal = document.getElementById('profile-modal');
+        const profileForm = document.getElementById('profile-form');
+        const profileDisplayName = document.getElementById('profile-display-name');
+        const profileDisplayMobile = document.getElementById('profile-display-mobile');
+        const profileDisplayAddress = document.getElementById('profile-display-address');
+        const messageModal = document.getElementById('message-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const viewPendingBtn = document.getElementById('view-pending-btn');
+
+        // State
+        let userSelectedServices = new Set(['service-1', 'service-2']); // Example of initially selected services
+        let currentRowForCancellation = null;
+
+        /**
+         * Shows a specific page and hides all others.
+         * @param {string} pageId The ID of the page to show.
+         */
+        const showPage = (pageId) => {
+            contentPages.forEach(page => {
+                page.classList.add('hidden');
+            });
+            document.getElementById(`${pageId}-page`).classList.remove('hidden');
+            headerTitle.textContent = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+        };
+
+        /**
+         * Sets the active state for a navigation button.
+         * @param {HTMLElement} button The button to set as active.
+         */
+        const setActiveButton = (button) => {
+            navButtons.forEach(btn => {
+                btn.classList.remove('bg-gray-700', 'text-white');
+                btn.classList.add('text-gray-200');
+            });
+            button.classList.add('bg-gray-700', 'text-white');
+            button.classList.remove('text-gray-200');
+        };
+
+        /**
+         * Renders the customers table with mock data.
+         */
+        const renderOrdersTable = () => {
+            ordersTableBody.innerHTML = '';
+            mockCustomers.forEach((order, index) => {
+                const statusColor = order.status === 'Completed' ? 'bg-green-100 text-green-800' :
+                                       order.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
+                                       'bg-red-100 text-red-800';
+                
+                const cancelButtonClasses = order.status === 'Completed' || order.status === 'Cancelled'
+                    ? 'bg-gray-400 text-white font-bold py-2 px-4 rounded-lg cursor-not-allowed shadow-md transition duration-300 ease-in-out'
+                    : 'bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out cancel-order-btn';
+                
+                // Create the main order row
+                const mainRow = document.createElement('tr');
+                mainRow.className = `order-row border-b border-gray-200 hover:bg-gray-100 transition-colors duration-150 ease-in-out cursor-pointer`;
+                mainRow.setAttribute('data-order-id', order.orderId);
+                mainRow.setAttribute('data-customer-name', order.name);
+                mainRow.setAttribute('data-mobile', order.mobile);
+                mainRow.setAttribute('data-address', order.address);
+
+                mainRow.innerHTML = `
+                    <td class="py-3 px-6 font-medium text-gray-900 flex items-center">
+                        #${order.orderId}
+                        <svg class="w-4 h-4 ml-2 text-gray-500 dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </td>
+                    <td class="py-3 px-6 text-gray-700">${order.service}</td>
+                    <td class="py-3 px-6 status-cell">
+                        <span class="px-2 py-1 font-semibold leading-tight rounded-full ${statusColor}" data-status="${order.status}">
+                            ${order.status}
+                        </span>
+                    </td>
+                    <td class="py-3 px-6">
+                        <button class="${cancelButtonClasses}" ${order.status === 'Completed' || order.status === 'Cancelled' ? 'disabled' : ''}>
+                            Cancel
+                        </button>
+                    </td>
+                `;
+                
+                // Create the hidden dropdown row
+                const dropdownRow = document.createElement('tr');
+                dropdownRow.className = `dropdown-content bg-gray-50`;
+                dropdownRow.innerHTML = `
+                    <td colspan="4" class="p-4">
+                        <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-inner text-sm">
+                            <p class="mb-2"><strong class="font-semibold">Customer Name:</strong> ${order.name}</p>
+                            <p class="mb-2"><strong class="font-semibold">Address:</strong> ${order.address}</p>
+                            <a href="tel:${order.mobile}" class="mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
+                                Call Customer
+                            </a>
+                        </div>
+                    </td>
+                `;
+                
+                ordersTableBody.appendChild(mainRow);
+                ordersTableBody.appendChild(dropdownRow);
+            });
+            lucide.createIcons();
+        };
+
+        /**
+         * Renders the services list with mock data.
+         */
+        const renderServicesList = () => {
+            servicesList.innerHTML = '';
+            mockServices.forEach(service => {
+                const isSelected = userSelectedServices.has(service.id);
+                const li = document.createElement('li');
+                li.className = `flex items-center justify-between py-4 px-4 rounded-lg transition-colors duration-200 cursor-pointer ${isSelected ? 'bg-teal-100 hover:bg-teal-200' : 'hover:bg-gray-50'}`;
+                li.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="h-10 w-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold mr-4">
+                            <i data-lucide="wrench" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-gray-800 font-medium">${service.name}</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm font-semibold text-teal-600">${isSelected ? 'Active' : ''}</span>
+                        <button class="edit-service-btn text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <i data-lucide="edit" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                `;
+                servicesList.appendChild(li);
+            });
+            lucide.createIcons();
+        };
+
+        /**
+         * Renders the profile display.
+         */
+        const renderProfileDisplay = () => {
+            profileDisplayName.textContent = mockProfile.fullName;
+            profileDisplayMobile.textContent = mockProfile.mobileNumber;
+            profileDisplayAddress.textContent = mockProfile.address;
+        };
+
+        /**
+         * Opens the services modal.
+         */
+        const openServicesModal = () => {
+            servicesCheckboxesContainer.innerHTML = '';
+            mockServices.forEach(service => {
+                const isChecked = userSelectedServices.has(service.id);
+                const checkboxDiv = document.createElement('div');
+                checkboxDiv.className = 'flex items-center p-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer';
+                checkboxDiv.innerHTML = `
+                    <input type="checkbox" id="service-${service.id}" name="service-${service.id}" value="${service.id}" class="h-5 w-5 text-teal-600 border-gray-300 rounded focus:ring-teal-500" ${isChecked ? 'checked' : ''}>
+                    <label for="service-${service.id}" class="ml-3 text-gray-800 font-medium cursor-pointer">${service.name}</label>
+                `;
+                servicesCheckboxesContainer.appendChild(checkboxDiv);
+            });
+            servicesModal.classList.remove('hidden', 'opacity-0');
+            setTimeout(() => {
+                servicesModal.style.opacity = 1;
+                servicesModal.querySelector('#services-modal-content').style.transform = 'translateY(0)';
+            }, 10);
+        };
+
+        /**
+         * Closes the services modal.
+         */
+        const closeServicesModal = () => {
+            servicesModal.style.opacity = 0;
+            servicesModal.querySelector('#services-modal-content').style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                servicesModal.classList.add('hidden');
+            }, 300);
+        };
+
+        /**
+         * Opens the profile modal.
+         */
+        const openProfileModal = () => {
+            profileForm.elements['fullName'].value = mockProfile.fullName;
+            profileForm.elements['mobileNumber'].value = mockProfile.mobileNumber;
+            profileForm.elements['address'].value = mockProfile.address;
+            profileModal.classList.remove('hidden', 'opacity-0');
+            setTimeout(() => {
+                profileModal.style.opacity = 1;
+                profileModal.querySelector('#profile-modal-content').style.transform = 'translateY(0)';
+            }, 10);
+        };
+
+        /**
+         * Closes the profile modal.
+         */
+        const closeProfileModal = () => {
+            profileModal.style.opacity = 0;
+            profileModal.querySelector('#profile-modal-content').style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                profileModal.classList.add('hidden');
+            }, 300);
+        };
+
+        /**
+         * Shows a general message modal.
+         * @param {string} title The title of the message.
+         * @param {string} message The message content.
+         */
+        const showModal = (title, message) => {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            messageModal.classList.remove('hidden', 'opacity-0');
+            setTimeout(() => {
+                messageModal.style.opacity = 1;
+                messageModal.querySelector('#message-modal-content').style.transform = 'translateY(0)';
+            }, 10);
+        };
+
+        /**
+         * Closes the general message modal.
+         */
+        const closeModal = () => {
+            messageModal.style.opacity = 0;
+            messageModal.querySelector('#message-modal-content').style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                messageModal.classList.add('hidden');
+            }, 300);
+        };
+
+        // Event listeners
+        sidebarToggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        closeSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const pageId = button.getAttribute('data-page');
+                showPage(pageId);
+                setActiveButton(button);
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            });
+        });
+
+        // Event listener for dropdowns on order rows
+        ordersTableBody.addEventListener('click', (event) => {
+            const row = event.target.closest('.order-row');
+            if (row) {
+                // Find the dropdown content and arrow for this specific row
+                const dropdownContent = row.nextElementSibling;
+                const arrowIcon = row.querySelector('.dropdown-arrow');
+                
+                // Close all other open dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(otherDropdown => {
+                    if (otherDropdown !== dropdownContent && otherDropdown.classList.contains('show-dropdown')) {
+                        otherDropdown.classList.remove('show-dropdown');
+                        const otherArrow = otherDropdown.previousElementSibling.querySelector('.dropdown-arrow');
+                        if (otherArrow) {
+                            otherArrow.classList.remove('rotate');
+                        }
+                    }
+                });
+
+                // Toggle visibility
+                const isHidden = dropdownContent.classList.toggle('show-dropdown');
+                if (arrowIcon) {
+                    arrowIcon.classList.toggle('rotate');
+                }
+            }
+        });
+
+        // Event listener for cancel buttons
+        ordersTableBody.addEventListener('click', (event) => {
+            const cancelButton = event.target.closest('.cancel-order-btn');
+            if (cancelButton) {
+                event.stopPropagation();
+                
+                currentRowForCancellation = event.target.closest('tr');
+                const statusSpan = currentRowForCancellation.querySelector('span[data-status]');
+                const currentStatus = statusSpan ? statusSpan.dataset.status : '';
+
+                if (currentStatus === 'Completed') {
+                    showModal('Cancellation Blocked', 'This order cannot be cancelled because its status is already Completed.');
+                    return;
+                }
+
+                if (currentStatus === 'Cancelled') {
+                    showModal('Cancellation Blocked', 'This order is already cancelled and cannot be cancelled again.');
+                    return;
+                }
+
+                warningModal.style.display = 'flex';
+            }
+        });
+
+        cancelWarningBtn.addEventListener('click', () => {
+            warningModal.style.display = 'none';
+            currentRowForCancellation = null;
+        });
+
+        confirmCancelBtn.addEventListener('click', () => {
+            if (currentRowForCancellation) {
+                const statusSpan = currentRowForCancellation.querySelector('span[data-status]');
+                const cancelButton = currentRowForCancellation.querySelector('.cancel-order-btn');
+                const orderId = currentRowForCancellation.dataset.orderId;
+
+                // Update the status in the UI
+                if (statusSpan) {
+                    statusSpan.textContent = 'Cancelled';
+                    statusSpan.dataset.status = 'Cancelled';
+                    statusSpan.classList.remove('bg-yellow-100', 'text-yellow-800');
+                    statusSpan.classList.add('bg-red-100', 'text-red-800');
+                }
+
+                // Disable the cancel button
+                if (cancelButton) {
+                    cancelButton.disabled = true;
+                    cancelButton.classList.remove('bg-red-500', 'hover:bg-red-600');
+                    cancelButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+                }
+                
+                // Update the mock data to reflect the change
+                const orderToUpdate = mockCustomers.find(o => o.orderId === orderId);
+                if (orderToUpdate) {
+                    orderToUpdate.status = 'Cancelled';
+                }
+
+                console.log(`Order ID ${orderId} has been successfully cancelled.`);
+                showModal('Success!', `Order ID ${orderId} has been successfully cancelled.`);
+            }
+            warningModal.style.display = 'none';
+        });
+
+        addServiceBtn.addEventListener('click', openServicesModal);
+
+        selectAllBtn.addEventListener('click', () => {
+            servicesCheckboxesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        });
+
+        resetServicesBtn.addEventListener('click', () => {
+            servicesCheckboxesContainer.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        });
+
+        saveServicesBtn.addEventListener('click', () => {
+            const newSelectedServices = new Set();
+            servicesCheckboxesContainer.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                newSelectedServices.add(checkbox.value);
+            });
+            userSelectedServices = newSelectedServices;
+            renderServicesList();
+            closeServicesModal();
+            showModal('Success!', 'Services have been updated successfully.');
+        });
+
+        editProfileBtn.addEventListener('click', openProfileModal);
+
+        profileForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            mockProfile.fullName = profileForm.elements['fullName'].value;
+            mockProfile.mobileNumber = profileForm.elements['mobileNumber'].value;
+            mockProfile.address = profileForm.elements['address'].value;
+            renderProfileDisplay();
+            closeProfileModal();
+            showModal('Success!', 'Profile has been updated successfully.');
+        });
+
+        viewPendingBtn.addEventListener('click', () => {
+            // Navigate to the "My Customers" page
+            showPage('customers');
+            // Find the "My customers" nav button and set it as active
+            const customersNavButton = document.querySelector('[data-page="customers"]');
+            if (customersNavButton) {
+                setActiveButton(customersNavButton);
+            }
+        });
+
+        // Initial setup
+        const init = () => {
+            showPage('dashboard');
+            setActiveButton(document.querySelector('[data-page="dashboard"]'));
+            renderOrdersTable();
+            renderServicesList();
+            renderProfileDisplay();
+            lucide.createIcons();
+        };
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

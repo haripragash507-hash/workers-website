@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Customer Sign Up | Quick Services</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="shortcut icon" href="img/l.png" sizes="48x48" type="image/x-icon" />
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="bg-white text-gray-800 p-4 md:p-6 shadow-md">
+    <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+      <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-600 mb-4 md:mb-0">
+        <img src="./img/l.png" class="w-10 h-10 mr-2" alt="Logo" />
+        Quick Services
+      </div>
+      <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+        <a href="index.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+        <a href="contact_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+        <a href="about_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+        <a href="my_booking.html" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+      </div>
+      <div class="flex items-center space-x-4 mt-4 md:mt-0">
+        <a href="sign_in.html">
+          <button class="bg-white text-blue-700 font-semibold py-2 px-4 rounded-full border border-blue-700 hover:bg-blue-50 transition duration-300">Sign In</button>
+        </a>
+        <div class="relative inline-block text-left">
+          <button id="signUpButton" class="bg-blue-700 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-800 transition duration-300 shadow-lg">Sign Up</button>
+          <div id="signUpDropdown" class="origin-top-center absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden left-1/2 -translate-x-1/2" role="menu">
+            <div class="py-1">
+              <a href="customer_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900">Customer Sign Up</a>
+              <a href="professional_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900">Professional Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const signUpButton = document.getElementById('signUpButton');
+        const signUpDropdown = document.getElementById('signUpDropdown');
+        signUpButton.addEventListener('click', function() {
+          signUpDropdown.classList.toggle('hidden');
+        });
+        window.addEventListener('click', function(event) {
+          if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+            signUpDropdown.classList.add('hidden');
+          }
+        });
+      });
+    </script>
+  </header>
+
+  <main class="flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
+      <div class="text-center">
+        <h1 class="mb-4 text-5xl font-bold text-blue-600">Quick Services</h1>
+        <h2 class="text-xl font-bold text-gray-900">Create an Account</h2>
+        <p class="mt-2 text-sm text-gray-600">Sign up to get started.</p>
+      </div>
+
+      <form id="signUpForm" class="mt-8 space-y-6">
+        <!-- Message box for displaying success or error messages -->
+        <div id="messageBox" class="p-4 hidden text-sm rounded-lg" role="alert"></div>
+        
+        <!-- User details form fields, visible initially -->
+        <div id="user-details-form" class="space-y-4">
+          <input id="full-name" type="text" placeholder="Full Name" required class="w-full px-3 py-2 border rounded-md" />
+          <input id="mobile-number" type="tel" placeholder="Mobile Number" required class="w-full px-3 py-2 border rounded-md" />
+          <input id="email-address" type="email" placeholder="Email Address" required class="w-full px-3 py-2 border rounded-md" />
+          <input id="password" type="password" placeholder="Password" required class="w-full px-3 py-2 border rounded-md" />
+        </div>
+        
+        <!-- OTP form fields, hidden initially -->
+        <div id="otp-form" class="space-y-4 hidden">
+          <p class="text-sm text-center text-gray-600">A verification code has been sent to your email.</p>
+          <input id="otp-code" type="text" placeholder="Enter OTP" class="w-full px-3 py-2 border rounded-md" />
+          
+          <!-- Timer and Resend button -->
+          <div class="flex items-center justify-center space-x-2 text-sm text-gray-600">
+            <span id="otp-timer"></span>
+            <button type="button" id="resend-otp-btn" class="text-blue-600 font-semibold disabled:text-gray-400 disabled:cursor-not-allowed">Resend OTP</button>
+          </div>
+        </div>
+        
+        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Sign Up</button>
+      </form>
+
+      <p class="text-center text-sm text-gray-600">
+        Already have an account? <a href="sign_in.html" class="text-blue-600 hover:underline">Sign In</a>
+      </p>
+    </div>
+  </main>
+
+  <script>
+    console.log("Script loaded.");
+
+    const form = document.getElementById('signUpForm');
+    const messageBox = document.getElementById('messageBox');
+    const userDetailsForm = document.getElementById('user-details-form');
+    const otpForm = document.getElementById('otp-form');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const resendOtpBtn = document.getElementById('resend-otp-btn');
+    const otpTimerEl = document.getElementById('otp-timer');
+    
+    let isOTPPhase = false;
+    let timer;
+    let userEmail = ''; // Store the email for resending OTP
+
+    // Function to start the countdown timer
+    const startTimer = () => {
+      let timeLeft = 60;
+      resendOtpBtn.disabled = true;
+      otpTimerEl.textContent = `Resend in ${timeLeft}s`;
+      console.log("Timer started.");
+
+      timer = setInterval(() => {
+        timeLeft--;
+        otpTimerEl.textContent = `Resend in ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          otpTimerEl.textContent = '';
+          resendOtpBtn.disabled = false;
+          console.log("Timer finished, Resend button enabled.");
+        }
+      }, 1000);
+    };
+
+    // Event listener for the "Resend OTP" button
+    resendOtpBtn.addEventListener('click', async () => {
+      console.log("Resend OTP button clicked.");
+      if (!userEmail) {
+        showMessage('Please enter your email to resend the OTP.', 'red');
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/api/users/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: userEmail })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          showMessage(data.message || 'A new OTP has been sent!', 'green');
+          startTimer();
+        } else {
+          showMessage(data.message || 'Failed to resend OTP.', 'red');
+        }
+      } catch (err) {
+        showMessage('Server error. Please try again later.', 'red');
+      }
+    });
+
+    // Helper function to show messages
+    const showMessage = (message, type) => {
+      messageBox.textContent = message;
+      messageBox.classList.remove('hidden');
+      if (type === 'green') {
+        messageBox.className = 'p-4 bg-green-100 text-green-700 rounded-lg';
+      } else {
+        messageBox.className = 'p-4 bg-red-100 text-red-700 rounded-lg';
+      }
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      console.log("Form submission triggered.");
+
+      // Clear previous messages
+      messageBox.classList.add('hidden');
+
+      if (!isOTPPhase) {
+        // Step 1: User details submission
+        const fullName = document.getElementById('full-name').value.trim();
+        const mobileNumber = document.getElementById('mobile-number').value.trim();
+        const email = document.getElementById('email-address').value.trim();
+        const password = document.getElementById('password').value.trim();
+        
+        userEmail = email; // Store email for resend functionality
+
+        console.log("Attempting to sign up user:", userEmail);
+
+        try {
+          const res = await fetch('http://localhost:3000/api/users/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ fullName, mobileNumber, email, password })
+          });
+          const data = await res.json();
+          console.log("Response from server:", res.status, data);
+
+          if (res.ok) {
+            showMessage(data.message || 'Signed up successfully! Please check your email for the OTP.', 'green');
+            // Switch to OTP verification phase
+            userDetailsForm.classList.add('hidden');
+            otpForm.classList.remove('hidden');
+            submitButton.textContent = 'Verify OTP';
+            isOTPPhase = true;
+            startTimer(); // Start the timer after successful signup
+          } else {
+            showMessage(data.message || 'Signup failed.', 'red');
+          }
+        } catch (err) {
+          console.error("Fetch error:", err);
+          showMessage('Server error. Please try again later.', 'red');
+        }
+      } else {
+        // Step 2: OTP verification
+        const email = userEmail; // Use the stored email
+        const otp = document.getElementById('otp-code').value.trim();
+        
+        console.log("Attempting to verify OTP for user:", email);
+
+        try {
+          const res = await fetch('http://localhost:3000/api/users/verify-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, otp })
+          });
+          const data = await res.json();
+          console.log("Response from server:", res.status, data);
+
+          if (res.ok) {
+            showMessage(data.message || 'Email verified successfully! You can now sign in.', 'green');
+            form.reset();
+            // Reset form to initial state for a new user
+            isOTPPhase = false;
+            userDetailsForm.classList.remove('hidden');
+            otpForm.classList.add('hidden');
+            submitButton.textContent = 'Sign Up';
+            clearInterval(timer); // Clear the timer on success
+          } else {
+            showMessage(data.message || 'OTP verification failed', 'red');
+          }
+        } catch (err) {
+          console.error("Fetch error:", err);
+          showMessage('Server error. Please try again later.', 'red');
+        }
+      }
+    });
+  </script>
+
+  <footer class="bg-gray-900 text-gray-400 p-8 mt-12">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-blue-700">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="about_us.html" class="hover:text-blue-500">About us</a></li>
+          <li><a href="terms_and_conditions.html" class="hover:text-blue-500">Terms & Conditions</a></li>
+          <li><a href="privacy_policy.html" class="hover:text-blue-500">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-blue-700">For Customers</h4>
+        <ul class="space-y-2">
+          <li><a href="contact_us.html" class="hover:text-blue-500">Contact us</a></li>
+          <li><a href="review.html" class="hover:text-blue-500">User Reviews</a></li>
+          <li><a href="my_booking.html" class="hover:text-blue-500">My Bookings</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-blue-700">For Professionals</h4>
+        <ul class="space-y-2">
+          <li><a href="professional_sign_up.html" class="hover:text-blue-500">Register as a professional</a></li>
+          <li><a href="customer_sign_up.html" class="hover:text-blue-500">Register as a customer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xl font-semibold mb-4 text-blue-700">Social links</h4>
+        <div class="flex space-x-3">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-sm text-gray-500 mt-8">
+      <p>&copy; 2025 CompanyName. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

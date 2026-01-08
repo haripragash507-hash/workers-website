@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Quick Services</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font 'Inter' for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body >
+
+
+    <div id="header-placeholder"></div>
+
+    <div class="p-4 md:p-8">
+
+        <!-- User Profile Section -->
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg mt-8 mb-8 max-w-2xl">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-2">My Profile</h2>
+        <p class="text-center text-gray-600 mb-8">Update your personal information.</p>
+
+        <!-- Profile picture section -->
+        <div class="flex flex-col items-center mb-8 ">
+            <!-- User Icon SVG with a blue border -->
+            <div class="w-32 h-32 rounded-full border-4 border-indigo-500 shadow-md flex items-center justify-center overflow-hidden bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Form for profile details -->
+        <form id="profile-form" class="bg-gray-50">
+            <!-- Message box for displaying feedback -->
+            <div id="messageBox" class="p-4 hidden text-sm rounded-lg" role="alert"></div>
+
+            <!-- Profile Details Box -->
+            <div class="relative border border-gray-200 rounded-xl p-4 sm:p-6 space-y-6">
+                <!-- Edit/Save button at the top-right -->
+                <div class="absolute top-4 right-4">
+                    <button type="button" id="toggle-edit" class="flex items-center space-x-1 px-3 py-1.5 bg-gray-200 text-gray-700 font-medium rounded-lg shadow-md hover:bg-gray-300 transition-colors">
+                        <span id="button-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                                <path d="m15 5 4 4" />
+                            </svg>
+                        </span>
+                        <span id="button-text">Edit</span>
+                    </button>
+                </div>
+                
+                <!-- Full Name Field -->
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700 ">Full Name</label>
+                    <p id="fullName-display" class="mt-1 block w-full px-3 py-2 text-gray-900"></p>
+                    <input type="text" id="fullName" name="fullName" class="mt-1 hidden w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <!-- Phone Number Field -->
+                <div>
+                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <p id="phoneNumber-display" class="mt-1 block w-full px-3 py-2 text-gray-900"></p>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" class="mt-1 hidden w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+
+                <!-- Address Field -->
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                    <p id="address-display" class="mt-1 block w-full px-3 py-2 text-gray-900"></p>
+                    <textarea id="address" name="address" rows="3" class="mt-1 hidden w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                </div>
+
+                <!-- A hidden submit button for the form, will be triggered by "Save" button in edit mode -->
+                <button type="submit" class="hidden"></button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleEditButton = document.getElementById('toggle-edit');
+            const messageBox = document.getElementById('messageBox');
+            const buttonText = document.getElementById('button-text');
+            const buttonIcon = document.getElementById('button-icon');
+
+            const fullNameInput = document.getElementById('fullName');
+            const phoneNumberInput = document.getElementById('phoneNumber');
+            const addressInput = document.getElementById('address');
+            
+            const fullNameDisplay = document.getElementById('fullName-display');
+            const phoneNumberDisplay = document.getElementById('phoneNumber-display');
+            const addressDisplay = document.getElementById('address-display');
+            
+            let editMode = false;
+
+            // Mock data for the user profile
+            let mockUserProfile = {
+                name: 'Jane Doe',
+                email: 'jane.doe@example.com',
+                phone: '+1 (555) 123-4567',
+                address: '123 Main Street, Anytown, USA 12345',
+            };
+
+            // Function to display messages to the user
+            function showMessage(text, type) {
+                messageBox.textContent = text;
+                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                if (type === 'success') {
+                    messageBox.classList.add('bg-green-100', 'text-green-700');
+                } else if (type === 'error') {
+                    messageBox.classList.add('bg-red-100', 'text-red-700');
+                }
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 3000);
+            }
+
+            // Function to render the profile based on the current state
+            function renderProfile() {
+                // Populate display elements
+                fullNameDisplay.textContent = mockUserProfile.name;
+                phoneNumberDisplay.textContent = mockUserProfile.phone;
+                addressDisplay.textContent = mockUserProfile.address;
+
+                // Toggle visibility and state based on editMode
+                if (editMode) {
+                    // Set input values
+                    fullNameInput.value = mockUserProfile.name;
+                    phoneNumberInput.value = mockUserProfile.phone;
+                    addressInput.value = mockUserProfile.address;
+
+                    // Show inputs, hide display elements
+                    fullNameDisplay.classList.add('hidden');
+                    phoneNumberDisplay.classList.add('hidden');
+                    addressDisplay.classList.add('hidden');
+                    fullNameInput.classList.remove('hidden');
+                    phoneNumberInput.classList.remove('hidden');
+                    addressInput.classList.remove('hidden');
+
+                    // Update button for Save mode
+                    buttonText.textContent = 'Save';
+                    toggleEditButton.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    toggleEditButton.classList.add('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                    buttonIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>`;
+                    
+                } else {
+                    // Hide inputs, show display elements
+                    fullNameDisplay.classList.remove('hidden');
+                    phoneNumberDisplay.classList.remove('hidden');
+                    addressDisplay.classList.remove('hidden');
+                    fullNameInput.classList.add('hidden');
+                    phoneNumberInput.classList.add('hidden');
+                    addressInput.classList.add('hidden');
+
+                    // Update button for Edit mode
+                    buttonText.textContent = 'Edit';
+                    toggleEditButton.classList.remove('bg-indigo-600', 'text-white', 'hover:bg-indigo-700');
+                    toggleEditButton.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    buttonIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-edit"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`;
+                }
+            }
+
+            // Handle edit/save button click
+            toggleEditButton.addEventListener('click', function() {
+                if (editMode) {
+                    // Save logic
+                    mockUserProfile.name = fullNameInput.value;
+                    mockUserProfile.phone = phoneNumberInput.value;
+                    mockUserProfile.address = addressInput.value;
+                    showMessage('Your profile has been successfully updated!', 'success');
+                }
+                
+                editMode = !editMode;
+                renderProfile();
+            });
+
+            // Initialize form on page load
+            renderProfile();
+        });
+    </script>
+
+    </div>
+
+
+    <div id="footer-placeholder"></div>
+
+
+
+    <script>
+    async function loadContent(url, targetId) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+        const html = await res.text();
+        document.getElementById(targetId).innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        document.getElementById(targetId).innerHTML =
+          `<div class="p-4 bg-red-100 text-red-700 rounded-md">Error loading ${url}</div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent('header.html', 'header-placeholder');
+      loadContent('footer.html', 'footer-placeholder');
+    });
+  </script>
+
+
+
+    
+</body>
+</html>

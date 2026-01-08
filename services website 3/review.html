@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Quick Services</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Star Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Font 'Inter' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="shortcut icon" href="img/l.png" sizes="48x48" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A light gray background */
+            color: #374151;
+        }
+        /* Custom styles for star rating */
+        .rating-stars .fa-star {
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+        }
+        .rating-stars .fa-star:hover,
+        .rating-stars .fa-star.active {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+
+
+    <body >
+    <!-- Navbar -->
+    <header class="bg-white text-gray-800 p-4 md:p-6 shadow-md">
+      <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-600 mb-4 md:mb-0">
+          <!-- A professional logo icon -->
+          <img src="./img/l.png" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-10 h-10 mr-2">
+          Quick Services
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+          <a href="index.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+          <a href="contact_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+          <a href="about_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+          <a href="my_booking.html" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+        </div>
+        
+        <!-- Auth Buttons -->
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <a href="sign_in.html" >
+            <button class="bg-white text-blue-700 font-semibold py-2 px-4 rounded-full border border-blue-700 hover:bg-blue-50 transition duration-300">Sign In</button>
+          </a>  
+            <!-- Dropdown container for Sign Up button -->
+            <div class="relative inline-block text-left">
+                <!-- Sign Up button to toggle the dropdown -->
+                <button id="signUpButton" class="bg-blue-700 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-800 transition duration-300 shadow-lg">
+                    Sign Up
+                </button>
+                
+                <!-- The dropdown menu, initially hidden -->
+                <div id="signUpDropdown" class="origin-top-center absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden left-1/2 -translate-x-1/2" role="menu" aria-orientation="vertical" aria-labelledby="signUpButton">
+                    <div class="py-1" role="none">
+                        <a href="customer_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Customer Sign Up</a>
+                        <a href="professional_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Professional Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signUpButton = document.getElementById('signUpButton');
+            const signUpDropdown = document.getElementById('signUpDropdown');
+
+            // Toggle the dropdown menu on button click
+            signUpButton.addEventListener('click', function() {
+                signUpDropdown.classList.toggle('hidden');
+            });
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function(event) {
+                if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                    signUpDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    </header>
+
+    <main class="p-4 md:p-8">
+        <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-2">Customer Reviews</h2>
+        <p class="text-center text-gray-600 mb-8">See what our valued customers have to say about our services.</p>
+        
+        <!-- Container for all reviews -->
+        <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Example Review Card (dynamically added by JS) -->
+        </div>
+    </div>
+
+    <!-- Review Submission Form Section -->
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg mt-8 mb-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-2">Leave a Review</h2>
+        <p class="text-center text-gray-600 mb-8">Share your experience with us.</p>
+        
+        <form id="reviewForm" class="max-w-xl mx-auto space-y-4">
+            <!-- Message Box for success or errors -->
+            <div id="messageBox" class="p-4 hidden text-sm rounded-lg" role="alert"></div>
+
+            <!-- Name Input -->
+            <div>
+                <label for="reviewer-name" class="sr-only">Your Name</label>
+                <input type="text" id="reviewer-name" name="reviewer-name" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Name">
+            </div>
+
+            <!-- Email Input -->
+            <div>
+                <label for="reviewer-email" class="sr-only">Your Email</label>
+                <input type="email" id="reviewer-email" name="reviewer-email" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Email">
+            </div>
+
+            <!-- Rating Input -->
+            <div>
+                <label for="rating" class="sr-only">Your Rating</label>
+                <div id="rating-stars" class="rating-stars text-gray-400 text-2xl mt-1">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div>
+                <input type="hidden" id="rating" name="rating" required>
+            </div>
+
+            <!-- Review Textarea -->
+            <div>
+                <label for="review-text" class="sr-only">Your Review</label>
+                <textarea id="review-text" name="review-text" rows="4" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Review"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md group hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Submit Review
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reviewsContainer = document.getElementById('reviews-container');
+            const reviewForm = document.getElementById('reviewForm');
+            const ratingStars = document.getElementById('rating-stars');
+            const ratingInput = document.getElementById('rating');
+            const messageBox = document.getElementById('messageBox');
+
+            let currentRating = 0;
+
+            // Mock data for initial reviews
+            const mockReviews = [
+                { name: 'Jane Doe', rating: 5, review: 'Fantastic service! The technician was professional and fixed the issue quickly.' },
+                { name: 'John Smith', rating: 4, review: 'Good work, but it took a little longer than expected. Overall, satisfied.' },
+                { name: 'Emily White', rating: 5, review: 'Highly recommend! The booking process was easy and the handyman was very skilled.' },
+            ];
+
+            // Function to render a single review card
+            function renderReview(review) {
+                const starIcons = Array.from({ length: 5 }, (_, i) => {
+                    return `<i class="fa-solid fa-star text-lg ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
+                }).join('');
+
+                const reviewCard = document.createElement('div');
+                reviewCard.classList.add('bg-gray-50', 'p-6', 'rounded-lg', 'shadow-md');
+                reviewCard.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 mr-4">
+                            <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-blue-500 text-white font-bold">
+                                ${review.name.charAt(0)}
+                            </span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">${review.name}</h3>
+                            <div class="flex items-center text-yellow-400">${starIcons}</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">${review.review}</p>
+                `;
+                reviewsContainer.prepend(reviewCard); // Add new reviews to the top
+            }
+
+            // Render mock reviews on page load
+            mockReviews.forEach(renderReview);
+
+            // Handle star rating selection
+            ratingStars.addEventListener('click', function(event) {
+                const star = event.target.closest('.fa-star');
+                if (star) {
+                    currentRating = parseInt(star.dataset.value);
+                    ratingInput.value = currentRating;
+                    updateStarColors(currentRating);
+                }
+            });
+
+            function updateStarColors(rating) {
+                Array.from(ratingStars.children).forEach( (star, index) => {
+                    if (index < rating) {
+                        star.classList.add('active', 'text-yellow-400');
+                        star.classList.remove('text-gray-300');
+                    } else {
+                        star.classList.remove('active', 'text-yellow-400');
+                        star.classList.add('text-gray-300');
+                    }
+                });
+            }
+
+            // Handle review form submission
+            reviewForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get form values
+                const name = document.getElementById('reviewer-name').value.trim();
+                const email = document.getElementById('reviewer-email').value.trim();
+                const rating = parseInt(document.getElementById('rating').value);
+                const reviewText = document.getElementById('review-text').value.trim();
+
+                // Simple validation
+                if (!name || !email || !rating || !reviewText) {
+                    messageBox.textContent = 'Please fill out all fields and select a rating.';
+                    messageBox.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+                    messageBox.classList.add('bg-red-100', 'text-red-700');
+                    return;
+                }
+
+                // Create a new review object
+                const newReview = { name, email, rating, review: reviewText };
+
+                // Render the new review to the page
+                renderReview(newReview);
+
+                // Show success message
+                messageBox.textContent = 'Thank you for your review! It has been submitted successfully.';
+                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                messageBox.classList.add('bg-green-100', 'text-green-700');
+
+                // Reset the form
+                reviewForm.reset();
+                currentRating = 0;
+                updateStarColors(currentRating);
+            });
+        });
+    </script>
+    </main>
+
+
+
+    <!-- Reviews Section -->
+
+    <footer class="bg-gray-900 text-gray-400 p-8 mt-12">
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about_us.html" class="hover:text-blue-500 transition duration-300">About us</a></li>
+            <li><a href="terms_and_conditions.html" class="hover:text-blue-500 transition duration-300">Terms & Conditions</a></li>
+            <li><a href="privacy_policy.html" class="hover:text-blue-500 transition duration-300">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Customers Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Customers</h4>
+          <ul class="space-y-2">
+            <li><a href="contact_us.html" class="hover:text-blue-500 transition duration-300">Contact us</a></li>
+            <li><a href="review.html" class="hover:text-blue-500 transition duration-300">User Reviews</a></li>
+            <li><a href="my_booking.html" class="hover:text-blue-500 transition duration-300">My Bookings</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Professionals Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Professionals</h4>
+          <ul class="space-y-2">
+            <li><a href="professional_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a professional</a></li>
+            <li><a href="customer_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a customer</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links Section -->
+        <div> <!-- Added margin-top for spacing -->
+            <h4 class="text-xl font-semibold mb-4 text-blue-700">Social links</h4>
+            <div  class="flex space-x-3">
+                <!-- Facebook -->
+                <a href="#" class="social-link-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+                <!-- Twitter -->
+                <a href="#" class="social-link-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="#" class="social-link-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#" class="social-link-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+            </div>
+        </div>
+      
+      <div class="text-center text-sm text-gray-500 mt-8">
+        <p>&copy; 2025 CompanyName. All rights reserved.</p>
+      </div>
+    </footer>
+    
+</body>
+</html>

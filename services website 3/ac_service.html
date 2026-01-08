@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanCool - AC Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+          font-family: 'Inter', sans-serif;
+          background-color: #f7fafc; /* bg-gray-50 from mechanic page */
+          color: #2d3748; /* text-gray-800 */
+      }
+      /* Custom styles for elements that Tailwind doesn't directly cover or for specific overrides */
+      .service-card {
+          background-color: white;
+          padding: 1.5rem; /* p-6 */
+          border-radius: 0.75rem; /* rounded-xl */
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+          transition: transform 0.2s ease-in-out;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+      }
+      .service-card:hover {
+          transform: translateY(-5px);
+      }
+      .review-card {
+          background-color: white;
+          padding: 1.25rem; /* p-5 */
+          border-radius: 0.75rem; /* rounded-xl */
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+      }
+      /* Style for the Book Now buttons within service cards */
+      .book-service-btn {
+          margin-top: 1rem; /* mt-4 */
+          padding: 0.5rem 1rem; /* Smaller padding */
+          background-color: #3B82F6; /* bg-blue-500 */
+          color: white;
+          font-weight: 700; /* font-bold */
+          border-radius: 9999px; /* rounded-full */
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+          transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+          align-self: flex-start; /* Aligns the button to the start (left) of the flex container */
+      }
+      .book-service-btn:hover {
+          background-color: #2563EB; /* hover:bg-blue-600 */
+          transform: scale(1.05); /* Slightly increased hover scale for better feedback */
+      }
+      /* Styling for form elements in the booking section to match overall theme */
+      .booking-input, .booking-select {
+          width: 100%;
+          padding: 0.75rem; /* py-3 */
+          border: 1px solid #d1d5db; /* border-gray-300 */
+          border-radius: 0.5rem; /* rounded-md */
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+          font-size: 1rem; /* text-base */
+          color: #374151; /* text-gray-700 */
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+      .booking-input:focus, .booking-select:focus {
+          outline: none;
+          border-color: #3B82F6; /* focus:border-blue-500 */
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 */
+      }
+      .btn-submit-form {
+          width: 100%;
+          padding: 0.75rem 1.5rem; /* py-3 px-6 */
+          background-color: #1D4ED8; /* bg-blue-700 */
+          color: white;
+          font-weight: 700; /* font-bold */
+          border-radius: 0.5rem; /* rounded-md */
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+          transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .btn-submit-form:hover {
+          background-color: #1E40AF; /* hover:bg-blue-800 */
+          transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body >
+
+    <div id="header-placeholder"></div>
+
+
+    <div class="bg-gray-50 text-gray-800">
+
+        <!-- Header Section (Hero) -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+          <div class="text-center md:text-left mb-8 md:mb-0">
+              <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+                  AC Repair & Services 
+              </h1>
+              <p class="text-xl text-blue-100 mb-6 max-w-lg">
+                  Your comfort, our priority. Book trusted AC technicians at your convenience.
+              </p>
+          </div>
+          <div class="flex-shrink-0">
+              <img
+                  src="./img/ac.jpg"
+                  alt="AC Technician"
+                  class="rounded-lg shadow-xl w-64 md:w-80"
+              />
+          </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">AC Services Offered</h2>
+      <div class="grid grid-cols-1 gap-8">
+        <!-- Service Card 1: AC Servicing -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">1. AC Servicing (Jet & Foam Cleaning)</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              Our deep cleaning service uses a high-pressure jet and a specialized
+              foam solution to thoroughly clean the indoor and outdoor units. This
+              removes accumulated dust, dirt, and mold, leading to improved
+              cooling efficiency, better airflow, and healthier air quality. The
+              service includes a detailed inspection of the filters, coils, and
+              drain line to ensure everything is functioning optimally. We also
+              provide a final check of the unit's performance to ensure maximum
+              comfort.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹499 (per unit)</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="AC Servicing (Jet & Foam Cleaning)">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 2: Gas Top-Up -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">2. Gas Top-Up</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              A gas top-up is essential when your AC's cooling performance
+              decreases due to a refrigerant leak. Our technicians will first
+              perform a comprehensive leak check using advanced tools to identify
+              and fix any issues before refilling the refrigerant gas
+              (R22/R32/R410A) for both split and window ACs. Post-service, we test
+              the cooling performance to ensure your AC is running efficiently and
+              your home is cool again.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹1499 – ₹2199 (based on AC type)</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="Gas Top-Up">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 3: AC Installation -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">3. AC Installation</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              Get a professional and hassle-free installation for your new split
+              or window AC unit. Our service includes secure mounting of the
+              indoor and outdoor units, proper copper pipe setup, and all
+              necessary electrical connections. We ensure a clean and efficient
+              setup with up to 3 meters of free piping to get your new AC running
+              perfectly from day one, maximizing its lifespan and performance.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹1199 onwards</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="AC Installation">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 4: AC Uninstallation -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">4. AC Uninstallation</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              Safely remove your AC unit with our trained professionals. This
+              service includes the careful dismantling of both indoor and outdoor
+              units, securing the refrigerant gas for future use, and ensuring the
+              area is left clean. Our technicians follow strict safety protocols
+              to prevent any damage to your property or the AC unit, making the
+              process smooth and worry-free.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹599</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="AC Uninstallation">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 5: AC Wet Servicing -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">5. AC Wet Servicing</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              Recommended for AC units that have not been serviced in a long time
+              or are extremely dirty. Our wet servicing provides a full, deep
+              cleaning with water to remove stubborn dust, mold, and clogs that
+              can significantly impact airflow and cooling. This service is
+              especially effective for heavily contaminated units and is
+              recommended every 4–6 months to maintain peak performance and air
+              quality.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹699</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="AC Wet Servicing">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 6: AC PCB Repair -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">6. AC PCB Repair</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              The PCB (Printed Circuit Board) is the brain of your AC. If your AC
+              is not turning on, the compressor isn't running, or the display is
+              showing errors, a faulty PCB may be the culprit. Our experts will
+              diagnose the issue and either repair the existing board or replace
+              it with a new one. All repairs come with a warranty for your peace
+              of mind.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: Starts at ₹1499</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="AC PCB Repair">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 7: AC Noise or Vibration Fix -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">7. AC Noise or Vibration Fix</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              Unusual noise or vibrations from your AC can indicate a mechanical
+              issue. Our technicians will troubleshoot the source of the noise,
+              which could be a loose fan, misaligned parts, or faulty bearings. We
+              will perform the necessary alignments and part replacements to
+              ensure your AC runs smoothly and quietly, restoring your home's
+              tranquility.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹299 – ₹799 depending on issue</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="AC Noise or Vibration Fix">Book Now</button>
+          </a>
+        </div>
+
+        <!-- Service Card 8: Annual Maintenance Contract (AMC) -->
+        <div class="service-card">
+          <div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">8. Annual Maintenance Contract (AMC)</h3>
+            <p class="text-gray-700 text-sm mb-3">
+              Secure your comfort year-round with our AMC package. It includes
+              three comprehensive services (a mix of wet and dry cleaning),
+              priority support during peak season, exclusive discounts on any
+              required repairs, and regular health check-ups to prevent future
+              breakdowns. This is the perfect solution for hassle-free AC
+              maintenance throughout the year.
+            </p>
+            <p class="text-blue-600 font-bold text-base mb-4">Price: ₹1499/year</p>
+          </div>
+          <a href="booking.html">
+          <button class="book-service-btn" data-service="Annual Maintenance Contract (AMC)">Book Now</button>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">What Our Customers Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="review-card">
+          <p class="text-gray-700 italic mb-4">
+            "Booked a foam cleaning – the technician was quick and super
+            professional! My AC feels like new."
+          </p>
+          <p class="font-semibold text-gray-900">– Divya M.</p>
+        </div>
+        <div class="review-card">
+          <p class="text-gray-700 italic mb-4">
+            "Gas top-up was done perfectly. Cooling is much better now. Highly
+            recommended!"
+          </p>
+          <p class="font-semibold text-gray-900">– Ramesh K.</p>
+        </div>
+        <!-- Adding a third review card for consistent layout with mechanic page -->
+        <div class="review-card">
+            <p class="text-gray-700 italic mb-4">"Excellent service for AC installation. Very efficient and professional team!"</p>
+            <p class="font-semibold text-gray-900">– Pooja L.</p>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <script>
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+      });
+
+      // Add event listeners to all "Book Now" buttons in service cards
+      
+
+      // Helper function to map service name to option value for the select dropdown
+      function getServiceOptionValue(serviceName) {
+          switch (serviceName) {
+              case "AC Servicing (Jet & Foam Cleaning)": return "servicing";
+              case "Gas Top-Up": return "gas";
+              case "AC Installation": return "install";
+              case "AC Uninstallation": return "uninstall";
+              case "AC Wet Servicing": return "wet-servicing";
+              case "AC PCB Repair": return "pcb-repair";
+              case "AC Noise or Vibration Fix": return "noise-vibration";
+              case "Annual Maintenance Contract (AMC)": return "amc";
+              default: return ""; // Fallback
+          }
+      }
+
+      // Booking Form Submission Logic
+      document.getElementById('bookingForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent default form submission
+
+          const name = document.getElementById('name').value;
+          const phone = document.getElementById('phone').value;
+          const serviceType = document.getElementById('serviceType').value;
+          const date = document.getElementById('date').value;
+          const formMessage = document.getElementById('formMessage');
+
+          if (!name || !phone || !serviceType || !date) {
+              formMessage.textContent = 'Please fill in all fields.';
+              formMessage.style.color = 'red';
+              return;
+          }
+
+          const bookingDetails = {
+              name: name,
+              phone: phone,
+              service: serviceType,
+              date: date
+          };
+
+          console.log('Booking Details:', bookingDetails);
+          formMessage.textContent = 'Booking successful! We will contact you shortly.';
+          formMessage.style.color = 'green';
+          this.reset(); // Clear the form
+      });
+    </script>
+
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+    async function loadContent(url, targetId) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+        const html = await res.text();
+        document.getElementById(targetId).innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        document.getElementById(targetId).innerHTML =
+          `<div class="p-4 bg-red-100 text-red-700 rounded-md">Error loading ${url}</div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent('header.html', 'header-placeholder');
+      loadContent('footer.html', 'footer-placeholder');
+    });
+  </script>
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanCool - Electrician Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom font for better aesthetics */
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+    /* Custom styles for elements that Tailwind doesn't directly cover or for specific overrides */
+    .service-card {
+        background-color: white;
+        padding: 1.5rem; /* p-6 */
+        border-radius: 0.75rem; /* rounded-xl */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .service-card:hover {
+        transform: translateY(-5px);
+    }
+    .review-card {
+        background-color: white;
+        padding: 1.25rem; /* p-5 */
+        border-radius: 0.75rem; /* rounded-xl */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    }
+    /* Style for the Book Now buttons within service cards */
+    .book-service-btn {
+        margin-top: 1rem; /* mt-4 */
+        padding: 0.5rem 1rem; /* Smaller padding */
+        background-color: #3B82F6; /* bg-blue-500 */
+        color: white;
+        font-weight: 700; /* font-bold */
+        border-radius: 9999px; /* rounded-full */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        align-self: flex-start; /* Aligns the button to the start (left) of the flex container */
+    }
+    .book-service-btn:hover {
+        background-color: #2563EB; /* hover:bg-blue-600 */
+        transform: scale(1.05); /* Slightly increased hover scale for better feedback */
+    }
+    /* Basic styling for form elements in the booking section to match overall theme */
+    .booking-input, .booking-select {
+        width: 100%;
+        padding: 0.75rem; /* py-3 */
+        border: 1px solid #d1d5db; /* border-gray-300 */
+        border-radius: 0.5rem; /* rounded-md */
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+        font-size: 1rem; /* text-base */
+        color: #374151; /* text-gray-700 */
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .booking-input:focus, .booking-select:focus {
+        outline: none;
+        border-color: #3B82F6; /* focus:border-blue-500 */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* focus:ring-blue-500 */
+    }
+    .btn-submit-form {
+        width: 100%;
+        padding: 0.75rem 1.5rem; /* py-3 px-6 */
+        background-color: #1D4ED8; /* bg-blue-700 */
+        color: white;
+        font-weight: 700; /* font-bold */
+        border-radius: 0.5rem; /* rounded-md */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .btn-submit-form:hover {
+        background-color: #1E40AF; /* hover:bg-blue-800 */
+        transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body >
+
+
+
+    <div id="header-placeholder"></div>
+
+
+
+
+
+    <div class="bg-gray-50 text-gray-800">
+
+        <!-- Header Section -->
+  <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div class="text-center md:text-left mb-8 md:mb-0">
+            <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+                Electrician Services
+            </h1>
+            <p class="text-xl text-blue-100 mb-6 max-w-lg">
+                Safe. Quick. Professional. Hire verified electricians at your doorstep.
+            </p>
+            <!-- Removed the "Book Now" button from here -->
+        </div>
+        <div class="flex-shrink-0">
+            <img src="./img/e.webp"
+                alt="Electrician" class="rounded-lg shadow-xl w-64 md:w-80" />
+        </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mb-16">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">Electrician Services Offered</h2>
+    <div class="grid grid-cols-1 gap-8">
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">1. Fan Installation / Repair</h3>
+          <p class="text-gray-700 text-sm mb-3">Installation and servicing of ceiling, pedestal, or exhaust fans. Includes mounting, wiring, balancing blades, and resolving noise or speed issues. Ideal for new fan setups or fixing malfunctioning units.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹199 onwards</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="Fan Installation / Repair">Book Now</button>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">2. Light Fitting / LED Installation</h3>
+          <p class="text-gray-700 text-sm mb-3">Installation of decorative lights, LED panels, tube lights, chandeliers, and more. Includes secure mounting, connection to existing electrical systems, and functionality checks. We also offer energy-efficient lighting consultations.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹149 onwards</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="Light Fitting / LED Installation">Book Now</button>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">3. Switchboard & Socket Repair</h3>
+          <p class="text-gray-700 text-sm mb-3">Repair and replacement of damaged or burnt switches, sockets, modular boards, and faceplates. All services include safety checks and secure rewiring to prevent future faults or short circuits.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹99 – ₹299 depending on complexity</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="Switchboard & Socket Repair">Book Now</button>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">4. Full Home Wiring (Consultation)</h3>
+          <p class="text-gray-700 text-sm mb-3">Expert consultation for new construction or renovation projects. We provide wiring layout plans, load calculations, material estimates, and safety assessments. Execution also available on request.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹399 for consultation</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="Full Home Wiring (Consultation)">Book Now</button>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">5. Inverter Installation / Setup</h3>
+          <p class="text-gray-700 text-sm mb-3">End-to-end inverter setup including battery integration, connection to main board, earthing validation, and load testing. Suitable for both new installations and system upgrades.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹499 onwards</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="Inverter Installation / Setup">Book Now</button>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">6. MCB, Fuse & DB Repairs</h3>
+          <p class="text-gray-700 text-sm mb-3">MCB tripping issues, fuse replacements, and distribution board upgrades are handled by trained technicians. Includes short circuit diagnostics and overload protection solutions for safety assurance.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹249 – ₹599</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="MCB, Fuse & DB Repairs">Book Now</button>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">7. Emergency Power Issue Handling</h3>
+          <p class="text-gray-700 text-sm mb-3">We provide emergency fault resolution for power outages, sparks, burning smells, and exposed wires. Our electricians ensure quick restoration of services with complete safety gear and tools.</p>
+          <p class="text-blue-600 font-bold text-base mb-4">Price: ₹299 onwards</p>
+        </div>
+        <a href="booking.html">
+        <button class="book-service-btn" data-service="Emergency Power Issue Handling">Book Now</button>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- What Our Customers Say Section -->
+  <section class="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 mb-16">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">What Our Customers Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="review-card">
+        <p class="text-gray-700 italic mb-4">"Electrician was super punctual and installed 3 ceiling fans in no time. Great service!"</p>
+        <p class="font-semibold text-gray-900">– Anjali S.</p>
+      </div>
+      <div class="review-card">
+        <p class="text-gray-700 italic mb-4">"They fixed my power trip issue in 15 minutes. Highly professional and polite."</p>
+        <p class="font-semibold text-gray-900">– Vikram R.</p>
+      </div>
+      <!-- Added a third review card for consistent layout with mechanic page -->
+      <div class="review-card">
+        <p class="text-gray-700 italic mb-4">"Very thorough and explained everything clearly. Highly recommend!"</p>
+        <p class="font-semibold text-gray-900">– Priya K.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    // Smooth scroll for internal links (e.g., Book Now button in header, if reintroduced)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Add event listeners to all "Book Now" buttons in service cards
+   
+
+    // Helper function to map service name to option value for the select dropdown
+    function getServiceOptionValue(serviceName) {
+        switch (serviceName) {
+            case "Fan Installation / Repair": return "fan";
+            case "Light Fitting / LED Installation": return "light";
+            case "Switchboard & Socket Repair": return "switchboard";
+            case "Full Home Wiring (Consultation)": return "wiring";
+            case "Inverter Installation / Setup": return "inverter";
+            case "MCB, Fuse & DB Repairs": return "mcb";
+            case "Emergency Power Issue Handling": return "emergency";
+            default: return ""; // Fallback
+        }
+    }
+
+
+    // Booking Form Submission Logic
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const serviceType = document.getElementById('serviceType').value;
+        const date = document.getElementById('date').value;
+        const formMessage = document.getElementById('formMessage');
+
+        if (!name || !phone || !serviceType || !date) {
+            formMessage.textContent = 'Please fill in all fields.';
+            formMessage.style.color = 'red';
+            return;
+        }
+
+        const bookingDetails = {
+            name: name,
+            phone: phone,
+            service: serviceType,
+            date: date
+        };
+
+        console.log('Booking Details:', bookingDetails);
+        formMessage.textContent = 'Booking successful! We will contact you shortly.';
+        formMessage.style.color = 'green';
+        this.reset(); // Clear the form
+        // In a real application, you would send this data to a server
+    });
+  </script>
+
+    </div>
+
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+    async function loadContent(url, targetId) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
+        const html = await res.text();
+        document.getElementById(targetId).innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        document.getElementById(targetId).innerHTML =
+          `<div class="p-4 bg-red-100 text-red-700 rounded-md">Error loading ${url}</div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadContent('header.html', 'header-placeholder');
+      loadContent('footer.html', 'footer-placeholder');
+    });
+  </script>
+
+  
+</body>
+</html>
+

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - Quick Services</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Star Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Font 'Inter' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A light gray background */
+            color: #374151;
+        }
+        /* Custom styles for star rating */
+        .rating-stars .fa-star {
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+        }
+        .rating-stars .fa-star:hover,
+        .rating-stars .fa-star.active {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Reviews Section -->
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg mt-8">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-2">Customer Reviews</h2>
+        <p class="text-center text-gray-600 mb-8">See what our valued customers have to say about our services.</p>
+        
+        <!-- Container for all reviews -->
+        <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Example Review Card (dynamically added by JS) -->
+        </div>
+    </div>
+
+    <!-- Review Submission Form Section -->
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg mt-8 mb-8">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-2">Leave a Review</h2>
+        <p class="text-center text-gray-600 mb-8">Share your experience with us.</p>
+        
+        <form id="reviewForm" class="max-w-xl mx-auto space-y-4">
+            <!-- Message Box for success or errors -->
+            <div id="messageBox" class="p-4 hidden text-sm rounded-lg" role="alert"></div>
+
+            <!-- Name Input -->
+            <div>
+                <label for="reviewer-name" class="sr-only">Your Name</label>
+                <input type="text" id="reviewer-name" name="reviewer-name" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Name">
+            </div>
+
+            <!-- Email Input -->
+            <div>
+                <label for="reviewer-email" class="sr-only">Your Email</label>
+                <input type="email" id="reviewer-email" name="reviewer-email" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Email">
+            </div>
+
+            <!-- Rating Input -->
+            <div>
+                <label for="rating" class="sr-only">Your Rating</label>
+                <div id="rating-stars" class="rating-stars text-gray-400 text-2xl mt-1">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div>
+                <input type="hidden" id="rating" name="rating" required>
+            </div>
+
+            <!-- Review Textarea -->
+            <div>
+                <label for="review-text" class="sr-only">Your Review</label>
+                <textarea id="review-text" name="review-text" rows="4" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Your Review"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Submit Review
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reviewsContainer = document.getElementById('reviews-container');
+            const reviewForm = document.getElementById('reviewForm');
+            const ratingStars = document.getElementById('rating-stars');
+            const ratingInput = document.getElementById('rating');
+            const messageBox = document.getElementById('messageBox');
+
+            let currentRating = 0;
+
+            // Mock data for initial reviews
+            const mockReviews = [
+                { name: 'Jane Doe', rating: 5, review: 'Fantastic service! The technician was professional and fixed the issue quickly.' },
+                { name: 'John Smith', rating: 4, review: 'Good work, but it took a little longer than expected. Overall, satisfied.' },
+                { name: 'Emily White', rating: 5, review: 'Highly recommend! The booking process was easy and the handyman was very skilled.' },
+            ];
+
+            // Function to render a single review card
+            function renderReview(review) {
+                const starIcons = Array.from({ length: 5 }, (_, i) => {
+                    return `<i class="fa-solid fa-star text-lg ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
+                }).join('');
+
+                const reviewCard = document.createElement('div');
+                reviewCard.classList.add('bg-gray-50', 'p-6', 'rounded-lg', 'shadow-md');
+                reviewCard.innerHTML = `
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 mr-4">
+                            <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-blue-500 text-white font-bold">
+                                ${review.name.charAt(0)}
+                            </span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">${review.name}</h3>
+                            <div class="flex items-center text-yellow-400">${starIcons}</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">${review.review}</p>
+                `;
+                reviewsContainer.prepend(reviewCard); // Add new reviews to the top
+            }
+
+            // Render mock reviews on page load
+            mockReviews.forEach(renderReview);
+
+            // Handle star rating selection
+            ratingStars.addEventListener('click', function(event) {
+                const star = event.target.closest('.fa-star');
+                if (star) {
+                    currentRating = parseInt(star.dataset.value);
+                    ratingInput.value = currentRating;
+                    updateStarColors(currentRating);
+                }
+            });
+
+            function updateStarColors(rating) {
+                Array.from(ratingStars.children).forEach( (star, index) => {
+                    if (index < rating) {
+                        star.classList.add('active', 'text-yellow-400');
+                        star.classList.remove('text-gray-300');
+                    } else {
+                        star.classList.remove('active', 'text-yellow-400');
+                        star.classList.add('text-gray-300');
+                    }
+                });
+            }
+
+            // Handle review form submission
+            reviewForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get form values
+                const name = document.getElementById('reviewer-name').value.trim();
+                const email = document.getElementById('reviewer-email').value.trim();
+                const rating = parseInt(document.getElementById('rating').value);
+                const reviewText = document.getElementById('review-text').value.trim();
+
+                // Simple validation
+                if (!name || !email || !rating || !reviewText) {
+                    messageBox.textContent = 'Please fill out all fields and select a rating.';
+                    messageBox.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+                    messageBox.classList.add('bg-red-100', 'text-red-700');
+                    return;
+                }
+
+                // Create a new review object
+                const newReview = { name, email, rating, review: reviewText };
+
+                // Render the new review to the page
+                renderReview(newReview);
+
+                // Show success message
+                messageBox.textContent = 'Thank you for your review! It has been submitted successfully.';
+                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                messageBox.classList.add('bg-green-100', 'text-green-700');
+
+                // Reset the form
+                reviewForm.reset();
+                currentRating = 0;
+                updateStarColors(currentRating);
+            });
+        });
+    </script>
+</body>
+</html>

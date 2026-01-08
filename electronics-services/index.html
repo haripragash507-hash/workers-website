@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UrbanCool - Electronics Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>UrbanCool Electronics Repair & Installation</h1>
+        <p>
+          Expert solutions for all your electronic appliances – fast, reliable, and affordable.
+        </p>
+        <a href="#book" class="btn-primary">Book Now</a>
+      </div>
+      <div class="hero-img">
+        <img
+          src="https://www.urbancompany.com/_next/image?url=%2Fimages%2Ftv-repair.jpg&w=1080&q=75"
+          alt="Technician servicing electronics"
+          onerror="this.onerror=null;this.src='https://placehold.co/350x200/cccccc/333333?text=Electronics+Technician'"
+        />
+      </div>
+    </section>
+
+    <section class="services">
+      <h2>Electronics Services Offered</h2>
+      <div class="service-container">
+        <!-- TV Repair -->
+        <div class="service-card">
+          <h3>1. LED/LCD TV Repair</h3>
+          <p>
+            We repair all brands of LED and LCD TVs, including screen flickering, no display, sound issues, and more. We provide thorough diagnostics, use genuine spare parts, and offer doorstep service with a warranty.
+          </p>
+          <p><strong>Price:</strong> ₹499 – ₹2499 depending on issue</p>
+        </div>
+
+        <!-- Refrigerator Repair -->
+        <div class="service-card">
+          <h3>2. Refrigerator Repair</h3>
+          <p>
+            Whether your refrigerator isn’t cooling, has excessive frost build-up, or makes strange noises, our technicians can resolve it efficiently. We cover both single and double-door fridges, with gas refilling, compressor replacement, and more.
+          </p>
+          <p><strong>Price:</strong> ₹399 – ₹2199 depending on model and issue</p>
+        </div>
+
+        <!-- Washing Machine Service -->
+        <div class="service-card">
+          <h3>3. Washing Machine Service</h3>
+          <p>
+            We handle fully automatic (front/top load) and semi-automatic washing machines. From drum problems to motor issues, we inspect, service, and replace parts with guaranteed results. Also includes descaling and deep drum cleaning.
+          </p>
+          <p><strong>Price:</strong> ₹499 onwards</p>
+        </div>
+
+
+         <div class="service-card">
+          <h3 class="text-xl font-bold">3. Laptop & Desktop Repair</h3>
+          <p class="mt-2">Facing performance issues or hardware problems? We offer RAM upgrades, SSD replacements, motherboard repairs, screen replacements, and virus removal services for all major laptop and desktop brands.</p>
+          <p class="mt-1 font-semibold">Price: ₹899 onwards</p>
+        </div>
+
+        <!-- Microwave Oven Repair -->
+        <div class="service-card">
+          <h3>4. Microwave Oven Repair</h3>
+          <p>
+            Get fast service for heating problems, spark issues, or touch panel not working. We repair all brands and models, including solo, grill, and convection types. All safety checks are performed before and after repair.
+          </p>
+          <p><strong>Price:</strong> ₹349 – ₹1499 depending on issue</p>
+        </div>
+
+        <!-- Water Purifier Service -->
+        <div class="service-card">
+          <h3>5. Water Purifier Installation & Service</h3>
+          <p>
+            Includes RO filter changes, leakage fixing, purifier cleaning, and AMC options. We service all major brands and ensure 100% purified water by checking TDS levels and filter health.
+          </p>
+          <p><strong>Price:</strong> ₹299 – ₹999</p>
+        </div>
+
+        <!-- Inverter & Stabilizer Service -->
+        <div class="service-card">
+          <h3>6. Inverter & Stabilizer Service</h3>
+          <p>
+            For power backup equipment, we provide repair, installation, and battery health checks. Services include inverter not charging, stabilizer not working, or battery replacement with warranty.
+          </p>
+          <p><strong>Price:</strong> ₹499 onwards</p>
+        </div>
+
+        <!-- AMC -->
+        <div class="service-card">
+          <h3>7. Annual Maintenance Contract (AMC)</h3>
+          <p>
+            Regular service coverage for all your household electronics with priority support, service reminders, and cost-effective maintenance. Choose from basic or premium AMC plans.
+          </p>
+          <p><strong>Price:</strong> ₹999 – ₹1999/year</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <h2>Customer Reviews</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <p>
+            "UrbanCool repaired my TV within hours of booking. Great service and genuine parts!"
+          </p>
+          <strong>– Ajay R.</strong>
+        </div>
+        <div class="review-card">
+          <p>
+            "Prompt washing machine service. Technician explained everything clearly."
+          </p>
+          <strong>– Swathi V.</strong>
+        </div>
+        <div class="review-card">
+          <p>
+            "Affordable and quick microwave repair. Highly recommended for kitchen appliances!"
+          </p>
+          <strong>– Neeraj P.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <h2>Book a Service</h2>
+      <form id="bookingForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+        <select id="serviceType" required>
+          <option value="">Select Service</option>
+          <option value="tv">TV Repair</option>
+          <option value="fridge">Refrigerator Repair</option>
+          <option value="washing">Washing Machine Service</option>
+          <option value="microwave">Microwave Repair</option>
+        </select>
+        <input type="date" id="date" required />
+        <button type="submit" class="btn-submit">Submit</button>
+        <p id="formMessage"></p>
+      </form>
+    </section>
+  </body>
+</html>

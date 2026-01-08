@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font 'Inter' for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>My Bookings | Qucik Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="img/l.png" sizes="48x48" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-white text-gray-800 p-4 md:p-6 shadow-md">
+      <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-600 mb-4 md:mb-0">
+          <!-- A professional logo icon -->
+          <img src="./img/l.png" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-10 h-10 mr-2">
+          Quick Services
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+          <a href="index.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+          <a href="contact_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+          <a href="about_us.html" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+          <a href="my_booking.html" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+        </div>
+        
+        <!-- Auth Buttons -->
+        <div class="flex items-center space-x-4 mt-4 md:mt-0">
+          <a href="sign_in.html" >
+            <button class="bg-white text-blue-700 font-semibold py-2 px-4 rounded-full border border-blue-700 hover:bg-blue-50 transition duration-300">Sign In</button>
+          </a>  
+            <!-- Dropdown container for Sign Up button -->
+            <div class="relative inline-block text-left">
+                <!-- Sign Up button to toggle the dropdown -->
+                <button id="signUpButton" class="bg-blue-700 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-800 transition duration-300 shadow-lg">
+                    Sign Up
+                </button>
+                
+                <!-- The dropdown menu, initially hidden -->
+                <div id="signUpDropdown" class="origin-top-center absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden left-1/2 -translate-x-1/2" role="menu" aria-orientation="vertical" aria-labelledby="signUpButton">
+                    <div class="py-1" role="none">
+                        <a href="customer_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Customer Sign Up</a>
+                        <a href="professional_sign_up.html" class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900" role="menuitem">Professional Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signUpButton = document.getElementById('signUpButton');
+            const signUpDropdown = document.getElementById('signUpDropdown');
+
+            // Toggle the dropdown menu on button click
+            signUpButton.addEventListener('click', function() {
+                signUpDropdown.classList.toggle('hidden');
+            });
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function(event) {
+                if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                    signUpDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    </header>
+
+
+
+    <main class="p-4 md:p-8" >
+
+        <!-- My Bookings Section -->
+    <div class="container mx-auto p-6 bg-white rounded-xl shadow-lg mt-8 mb-8">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-2">My Bookings</h2>
+        <p class="text-center text-gray-600 mb-8">View and manage your upcoming and past bookings.</p>
+
+        <!-- Message box for displaying feedback -->
+        <div id="messageBox" class="p-4 hidden text-sm rounded-lg" role="alert"></div>
+
+        <!-- Container for all booking cards and their details -->
+        <div id="bookings-container" class="space-y-6">
+            <!-- Booking cards and their details will be dynamically added here by JavaScript -->
+        </div>
+
+        <!-- Message for when there are no bookings -->
+        <div id="no-bookings-message" class="text-center p-12 hidden">
+            <p class="text-gray-500 text-lg">You don't have any bookings at the moment.</p>
+            <p class="mt-2 text-gray-500 text-md">Book a new service to get started!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingsContainer = document.getElementById('bookings-container');
+            const noBookingsMessage = document.getElementById('no-bookings-message');
+            const messageBox = document.getElementById('messageBox');
+
+            // Mock data for user's bookings, now with service descriptions and bill details
+            const mockBookings = [
+                {
+                    id: 'bkg-12345',
+                    service: 'Plumbing Repair',
+                    serviceDescription: 'A qualified plumber will be dispatched to diagnose and fix leaks, unclog drains, or repair fixtures. The service includes a full assessment of the issue and a quality guarantee on all repairs.',
+                    date: 'August 15, 2025',
+                    time: '10:00 AM',
+                    status: 'Confirmed',
+                    billDetails: {
+                        items: [
+                            { description: 'Service Fee', amount: 50.00 },
+                            { description: 'Parts Replacement', amount: 35.50 }
+                        ],
+                        total: 85.50
+                    }
+                },
+                {
+                    id: 'bkg-67890',
+                    service: 'Electrical Wiring Inspection',
+                    serviceDescription: 'A certified electrician will perform a comprehensive safety check on your home\'s electrical system. This includes inspecting wiring, outlets, and the circuit breaker panel to ensure everything meets current safety standards.',
+                    date: 'August 20, 2025',
+                    time: '02:30 PM',
+                    status: 'Pending',
+                    billDetails: {
+                        items: [
+                            { description: 'Inspection Fee', amount: 75.00 }
+                        ],
+                        total: 75.00
+                    }
+                },
+                {
+                    id: 'bkg-11223',
+                    service: 'AC Unit Maintenance',
+                    serviceDescription: 'A professional HVAC technician will perform routine maintenance on your AC unit, including cleaning the filters, checking the refrigerant levels, and inspecting for any potential issues to improve efficiency and prolong the unit\'s lifespan.',
+                    date: 'August 05, 2025',
+                    time: '11:00 AM',
+                    status: 'Completed',
+                    billDetails: {
+                        items: [
+                            { description: 'AC Servicing', amount: 120.00 },
+                            { description: 'Filter Replacement', amount: 20.00 }
+                        ],
+                        total: 140.00
+                    }
+                }
+            ];
+
+            // Function to render a single booking card along with its hidden details section
+            function renderBooking(booking) {
+                const statusColor = {
+                    'Confirmed': 'bg-green-100 text-green-800',
+                    'Pending': 'bg-yellow-100 text-yellow-800',
+                    'Completed': 'bg-blue-100 text-blue-800',
+                    'Canceled': 'bg-red-100 text-red-800'
+                };
+
+                // Create a container for the booking card and its details
+                const bookingGroup = document.createElement('div');
+                bookingGroup.classList.add('flex', 'flex-col', 'shadow-md', 'rounded-xl');
+                
+                // Main booking card
+                const bookingCard = document.createElement('div');
+                bookingCard.classList.add('flex', 'flex-col', 'md:flex-row', 'justify-between', 'items-center', 'p-6', 'bg-gray-50', 'rounded-t-xl');
+                bookingCard.setAttribute('data-booking-id', booking.id);
+
+                bookingCard.innerHTML = `
+                    <div class="mb-4 md:mb-0 md:flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800">${booking.service}</h3>
+                        <p class="text-gray-600">
+                            <span class="font-medium">Date:</span> ${booking.date} at ${booking.time}
+                        </p>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold ${statusColor[booking.status] || 'bg-gray-100 text-gray-800'}">
+                            ${booking.status}
+                        </span>
+                        <div class="flex space-x-2">
+                            <button class="view-details-btn px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                View Details
+                            </button>
+                            ${booking.status === 'Confirmed' || booking.status === 'Pending' ? `
+                            <button class="cancel-btn px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Cancel
+                            </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                // Bill Details Section (initially hidden)
+                const billDetailsContainer = document.createElement('div');
+                billDetailsContainer.id = `details-${booking.id}`;
+                billDetailsContainer.classList.add('hidden', 'p-6', 'bg-gray-100', 'rounded-b-xl', 'transition-all', 'duration-300', 'ease-in-out');
+                
+                billDetailsContainer.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-2xl font-bold text-gray-900">Booking Details</h3>
+                        <button class="close-details-btn text-gray-500 hover:text-gray-700 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="bill-details-content">
+                        <!-- Bill details will be dynamically added here -->
+                    </div>
+                `;
+
+                bookingGroup.appendChild(bookingCard);
+                bookingGroup.appendChild(billDetailsContainer);
+
+                bookingsContainer.appendChild(bookingGroup);
+            }
+
+            // Function to display messages to the user
+            function showMessage(text, type) {
+                messageBox.textContent = text;
+                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+                if (type === 'success') {
+                    messageBox.classList.add('bg-green-100', 'text-green-700');
+                } else if (type === 'error') {
+                    messageBox.classList.add('bg-red-100', 'text-red-700');
+                }
+            }
+
+            // Function to render the bill details into a specific container
+            function renderBillDetails(booking, container) {
+                const billItemsHtml = booking.billDetails.items.map(item => `
+                    <div class="flex justify-between py-2 border-b border-gray-200">
+                        <span>${item.description}</span>
+                        <span>$${item.amount.toFixed(2)}</span>
+                    </div>
+                `).join('');
+
+                container.innerHTML = `
+                    <p class="text-gray-600 mb-4">Invoice for **${booking.service}** on **${booking.date}** at **${booking.time}**.</p>
+                    
+                    <div class="space-y-2">
+                        ${billItemsHtml}
+                    </div>
+                    <div class="flex justify-between py-2 mt-4 font-bold text-lg">
+                        <span>Total Amount</span>
+                        <span>$${booking.billDetails.total.toFixed(2)}</span>
+                    </div>
+                `;
+            }
+
+            // Render all bookings on page load
+            if (mockBookings.length > 0) {
+                bookingsContainer.classList.remove('hidden');
+                noBookingsMessage.classList.add('hidden');
+                mockBookings.forEach(renderBooking);
+            } else {
+                bookingsContainer.classList.add('hidden');
+                noBookingsMessage.classList.remove('hidden');
+            }
+
+            // Event listener for the entire bookings container to handle clicks on the "View Details" and "Cancel" buttons
+            bookingsContainer.addEventListener('click', function(event) {
+                const target = event.target;
+                
+                // Find the closest booking card group
+                const bookingGroup = target.closest('.flex.flex-col.shadow-md.rounded-xl');
+                if (!bookingGroup) return;
+
+                // Find the booking card within the group
+                const bookingCard = bookingGroup.querySelector('[data-booking-id]');
+                if (!bookingCard) return;
+
+                const bookingId = bookingCard.getAttribute('data-booking-id');
+                const booking = mockBookings.find(b => b.id === bookingId);
+                
+                // Find the corresponding bill details container
+                const billDetailsContainer = bookingGroup.querySelector(`#details-${bookingId}`);
+                
+                if (target.classList.contains('view-details-btn')) {
+                    if (booking && billDetailsContainer) {
+                        // Toggle the visibility of the details container
+                        billDetailsContainer.classList.toggle('hidden');
+
+                        // If the container is now visible, render the details
+                        if (!billDetailsContainer.classList.contains('hidden')) {
+                            const detailsContent = billDetailsContainer.querySelector('.bill-details-content');
+                            renderBillDetails(booking, detailsContent);
+                        }
+                    }
+                }
+                
+                // Handle the cancel button click
+                if (target.classList.contains('cancel-btn')) {
+                    // Simulate API call to cancel the booking
+                    console.log(`Cancelling booking with ID: ${bookingId}`);
+                    // In a real app, you would handle the cancellation and re-render the list
+                    showMessage(`Booking ${bookingId} has been successfully cancelled.`, 'success');
+                }
+                
+                // Handle the close button click for the details section
+                if (target.classList.contains('close-details-btn')) {
+                    if (billDetailsContainer) {
+                        billDetailsContainer.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+
+    </main>
+
+
+    
+<footer class="bg-gray-900 text-gray-400 p-8 mt-12">
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about_us.html" class="hover:text-blue-500 transition duration-300">About us</a></li>
+            <li><a href="terms_and_conditions.html" class="hover:text-blue-500 transition duration-300">Terms & Conditions</a></li>
+            <li><a href="privacy_policy.html" class="hover:text-blue-500 transition duration-300">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Customers Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Customers</h4>
+          <ul class="space-y-2">
+            <li><a href="contact_us.html" class="hover:text-blue-500 transition duration-300">Contact us</a></li>
+            <li><a href="review.html" class="hover:text-blue-500 transition duration-300">User Reviews</a></li>
+            <li><a href="my_booking.html" class="hover:text-blue-500 transition duration-300">My Bookings</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Professionals Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Professionals</h4>
+          <ul class="space-y-2">
+            <li><a href="professional_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a professional</a></li>
+            <li><a href="customer_sign_up.html" class="hover:text-blue-500 transition duration-300">Register as a customer</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links Section -->
+        <div> <!-- Added margin-top for spacing -->
+            <h4 class="text-xl font-semibold mb-4 text-blue-700">Social links</h4>
+            <div  class="flex space-x-3">
+                <!-- Facebook -->
+                <a href="#" class="social-link-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+                <!-- Twitter -->
+                <a href="#" class="social-link-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="#" class="social-link-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#" class="social-link-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+            </div>
+        </div>
+      
+      <div class="text-center text-sm text-gray-500 mt-8">
+        <p>&copy; 2025 CompanyName. All rights reserved.</p>
+      </div>
+    </footer>
+
+
+
+    
+</body>
+</html>
