@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Your Website</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font 'Inter' for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A light gray background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <!-- Main container for the sign-up card -->
+    <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
+        <!-- Header section of the sign-up card -->
+        <div class="text-center">
+            <h1 class="mb-4 text-5xl font-bold text-indigo-600">Quick Services</h1>
+            <h2 class="text-xl font-bold text-gray-900">Create an Professional Account</h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Sign up to get started.
+            </p>
+        </div>
+
+        <!-- The sign-up form -->
+        <form id="signUpForm" class="mt-8 space-y-6">
+            <!-- Message box for displaying errors -->
+            <div id="messageBox" class="p-4 hidden text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+                <!-- Error messages will be inserted here -->
+            </div>
+            <div class="space-y-4">
+                <!-- Name input field -->
+                <div>
+                    <label for="full-name" class="sr-only">Full Name</label>
+                    <input id="full-name" name="name" type="text" autocomplete="name" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Full Name">
+                </div>
+                <!-- Mobile number input field -->
+                <div>
+                    <label for="mobile-number" class="sr-only">Mobile Number</label>
+                    <input id="mobile-number" name="mobile-number" type="tel" autocomplete="tel" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Mobile Number">
+                </div>
+                <!-- Email input field -->
+                <div>
+                    <label for="email-address" class="sr-only">Email address</label>
+                    <input id="email-address" name="email" type="email" autocomplete="email" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                </div>
+                <!-- Password input field -->
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign up
+                </button>
+            </div>
+        </form>
+
+        <!-- Sign in link -->
+        <div class="text-center text-sm text-gray-600">
+            Already have an account? 
+            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Sign in
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Get the form and message box elements
+        const form = document.getElementById('signUpForm');
+        const messageBox = document.getElementById('messageBox');
+        const nameInput = document.getElementById('full-name');
+        const mobileInput = document.getElementById('mobile-number');
+        const emailInput = document.getElementById('email-address');
+        const passwordInput = document.getElementById('password');
+
+        // Add a submit event listener to the form
+        form.addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            
+            // Clear any previous messages
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+
+            // Get the values from the input fields
+            const name = nameInput.value.trim();
+            const mobile = mobileInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Perform simple front-end validation
+            if (!name || !mobile || !email || !password) {
+                messageBox.textContent = 'Please fill out all fields.';
+                messageBox.classList.remove('hidden');
+            } else {
+                // If validation passes, you would typically send this data to a backend.
+                // For this example, we'll just log it to the console.
+                console.log('Sign-up attempt with:');
+                console.log('Name:', name);
+                console.log('Mobile Number:', mobile);
+                console.log('Email:', email);
+                console.log('Password:', password);
+                
+                // You could then redirect the user or show a success message
+                // messageBox.textContent = 'Account created successfully!';
+                // messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                // messageBox.classList.add('bg-green-100', 'text-green-700');
+            }
+        });
+    </script>
+</body>
+</html>

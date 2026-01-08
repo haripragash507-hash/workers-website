@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Services</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Google Fonts for a clean font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <header class="navbar">
+        <nav class="container nav-content">
+            <!-- Logo -->
+            <div class="logo">
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-7 h-7 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 17.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
+                </svg>
+
+
+                <!--delete-->
+
+
+
+                CompanyName
+            </div>
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+                <a href="#">About Us</a>
+                <a href="#">My Booking</a>
+            </div>
+            <!-- Auth Buttons -->
+            <div class="auth-buttons">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="font-Playfair Display">
+                Hiring Service Experts<br>Made Easy
+            </h1>
+        </section>
+        
+        <!-- Search and Location Bar -->
+        <div class="search-container">
+            <!-- Location Input -->
+            <div class="search-input-group">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" placeholder="Select your city" aria-label="Select city" />
+            </div>
+            <!-- Service Search Input -->
+            <div class="search-input-group">
+                <input type="text" placeholder="What service do you need?" aria-label="Search for a service" />
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <!-- Popular Services Section with icons -->
+        <div class="popular-services-section">
+            <section id="icons-container" class="services-container">
+                <!-- Card for Electrician service -->
+                <div class="service-icon-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span>Electrician</span>
+                </div>
+                <!-- Card for Plumber service -->
+                <div class="service-icon-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                    <span>Plumber</span>
+                </div>
+                <!-- Card for Mechanic service -->
+                <div class="service-icon-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>Mechanic</span>
+                </div>
+                <!-- Card for AC Repair service -->
+                <div class="service-icon-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <span>AC Repair</span>
+                </div>
+                <!-- Card for Painting service -->
+                <div class="service-icon-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.5m-1.432-8.568a4 4 0 014.286 1.411A5 5 0 0115 13a4 4 0 01-4 4h-1.371a2 2 0 00-.73.186L7 17.5M14 17h1a2 2 0 002-2v-4a2 2 0 00-2-2h-1m-4 0v2"></path>
+                    </svg>
+                    <span>Painting</span>
+                </div>
+                <!-- Card for Cleaning service -->
+                <div class="service-icon-card">
+                    <svg class="h-12 w-12 mx-auto text-blue-700 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-1.5 0V5.5a.75.75 0 0 1 .75-.75Zm0 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                    </svg>
+                    <span>Cleaning</span>
+                </div>
+            </section>
+        </div>
+
+        <!-- Services Carousel Container -->
+        <div class="service-carousel-section">
+            <!-- Left Arrow -->
+            <button id="prevBtn" class="arrow-btn" aria-label="Previous services">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+
+            <!-- Services Grid - The scrollable part -->
+            <section id="services-container" class="service-carousel-cards">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="content">
+                        <img src="https://i.imgur.com/8vDa3mF.png" alt="An electrician working on a wire." />
+                        <h2>Electrician</h2>
+                        <p>Get experts in 2 hours at ₹149</p>
+                        <button>Book now</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="content">
+                        <img src="https://i.imgur.com/gu6E1Ul.png" alt="A plumber fixing a pipe." />
+                        <h2>Plumber</h2>
+                        <p>Quick plumbing services at your door</p>
+                        <button>Book now</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="content">
+                        <img src="https://i.imgur.com/BXfFxPA.png" alt="A car mechanic working on an engine." />
+                        <h2>Mechanic</h2>
+                        <p>Mechanical issues fixed on spot</p>
+                        <button>Book now</button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="content">
+                        <img src="https://i.imgur.com/2PYLUHq.png" alt="An AC unit being repaired." />
+                        <h2>AC Repair</h2>
+                        <p>AC service and repair at low cost</p>
+                        <button>Book now</button>
+                    </div>
+                </div>
+                
+                <!-- More Cards -->
+                <div class="service-card">
+                    <div class="content">
+                        <img src="https://placehold.co/112x112/4F46E5/ffffff?text=Paint" alt="Painter working on a wall." />
+                        <h2>Painting</h2>
+                        <p>Professional painting services</p>
+                        <button>Book now</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="content">
+                        <img src="https://placehold.co/112x112/4F46E5/ffffff?text=Garden" alt="Gardener tending to plants." />
+                        <h2>Gardening</h2>
+                        <p>Expert gardening and landscaping</p>
+                        <button>Book now</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Arrow -->
+            <button id="nextBtn" class="arrow-btn" aria-label="Next services">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Section: Why Choose Us -->
+        <section class="why-us-section">
+            <h2>Why Choose Us?</h2>
+            <div class="why-us-grid">
+                <!-- Feature 1: Verified Professionals -->
+                <div class="why-us-card">
+                    <div class="icon-container">
+                        <i class="fas fa-check-circle fa-2x"></i>
+                    </div>
+                    <h3>Verified Professionals</h3>
+                    <p>All our service providers are background-checked and certified experts.</p>
+                </div>
+                <!-- Feature 2: Transparent Pricing -->
+                <div class="why-us-card">
+                    <div class="icon-container">
+                        <i class="fas fa-hand-holding-usd fa-2x"></i>
+                    </div>
+                    <h3>Transparent Pricing</h3>
+                    <p>Know the cost upfront with no hidden fees or surprise charges.</p>
+                </div>
+                <!-- Feature 3: 24/7 Customer Support -->
+                <div class="why-us-card">
+                    <div class="icon-container">
+                        <i class="fas fa-headset fa-2x"></i>
+                    </div>
+                    <h3>24/7 Customer Support</h3>
+                    <p>Our support team is always available to assist you with any issue.</p>
+                </div>
+                <!-- Feature 4: Satisfaction Guarantee -->
+                <div class="why-us-card">
+                    <div class="icon-container">
+                        <i class="fas fa-badge-check fa-2x"></i>
+                    </div>
+                    <h3>Satisfaction Guarantee</h3>
+                    <p>We stand by our work and guarantee your satisfaction with every service.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: How It Works -->
+        <section class="how-it-works-section">
+            <h2>How It Works</h2>
+            <div class="how-it-works-grid">
+                <!-- Step 1 -->
+                <div class="how-it-works-card">
+                    <div class="step-number">1</div>
+                    <h3>Select Service</h3>
+                    <p>Choose the home repair service you need from our extensive list.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="how-it-works-card">
+                    <div class="step-number">2</div>
+                    <h3>Book an Appointment</h3>
+                    <p>Pick a convenient date and time that fits your schedule.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="how-it-works-card">
+                    <div class="step-number">3</div>
+                    <h3>Expert on the way</h3>
+                    <p>A verified professional will arrive at your doorstep, on time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Call to Action -->
+        <section class="cta-section">
+            <h2>Ready to get started?</h2>
+            <p>Book your service today and experience hassle-free home repairs.</p>
+            <button>Book a Service Now</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Section -->
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- For Customers Section -->
+                <div>
+                    <h4>For Customers</h4>
+                    <ul>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">User Reviews</a></li>
+                        <li><a href="#">My Bookings</a></li>
+                    </ul>
+                </div>
+                
+                <!-- For Professionals Section -->
+                <div>
+                    <h4>For Professionals</h4>
+                    <ul>
+                        <li><a href="#">Register as a professional</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Links Section -->
+                <div>
+                    <h4>Social links</h4>
+                    <div class="social-links">
+                        <!-- Facebook -->
+                        <a href="#" class="social-link-btn" aria-label="Facebook">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <!-- Twitter -->
+                        <a href="#" class="social-link-btn" aria-label="Twitter">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" class="social-link-btn" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="#" class="social-link-btn" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CompanyName. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js" defer></script>
+</body>
+</html>

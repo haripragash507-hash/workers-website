@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Your Website</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font 'Inter' for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* A light gray background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <!-- Main container for the sign-in card -->
+    <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
+        <!-- Header section of the sign-in card -->
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900">Welcome Back!</h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Sign in to access your account.
+            </p>
+        </div>
+
+        <!-- The sign-in form -->
+        <form id="signInForm" class="mt-8 space-y-6">
+            <!-- Message box for displaying errors -->
+            <div id="messageBox" class="p-4 hidden text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+                <!-- Error messages will be inserted here -->
+            </div>
+            <div class="space-y-4">
+                <!-- Email input field -->
+                <div>
+                    <label for="email-address" class="sr-only">Email address</label>
+                    <input id="email-address" name="email" type="email" autocomplete="email" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                </div>
+                <!-- Password input field -->
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                </div>
+            </div>
+
+            <!-- Forgot password link and sign-in button container -->
+            <div class="flex items-center justify-between">
+                <div class="text-sm">
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                        Forgot your password?
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Sign in
+                </button>
+            </div>
+        </form>
+
+        <!-- Sign up link -->
+        <div class="text-center text-sm text-gray-600">
+            Don't have an account? 
+            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Sign up
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Get the form and message box elements
+        const form = document.getElementById('signInForm');
+        const messageBox = document.getElementById('messageBox');
+        const emailInput = document.getElementById('email-address');
+        const passwordInput = document.getElementById('password');
+
+        // Add a submit event listener to the form
+        form.addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+            
+            // Clear any previous messages
+            messageBox.textContent = '';
+            messageBox.classList.add('hidden');
+
+            // Get the values from the input fields
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Perform simple front-end validation
+            if (!email || !password) {
+                messageBox.textContent = 'Please enter both email and password.';
+                messageBox.classList.remove('hidden');
+            } else {
+                // If validation passes, you would typically send this data to a backend.
+                // For this example, we'll just log it to the console.
+                console.log('Sign-in attempt with:');
+                console.log('Email:', email);
+                console.log('Password:', password);
+                
+                // You could then redirect the user or show a success message
+                // messageBox.textContent = 'Sign-in successful!';
+                // messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                // messageBox.classList.add('bg-green-100', 'text-green-700');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Services Carousel</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    /* Optional: Smooth scrollbar styling */
+    #services-container::-webkit-scrollbar {
+      height: 6px;
+    }
+    #services-container::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+
+  <section class="max-w-7xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-center text-blue-700 mb-8">Our Services</h1>
+
+    <!-- Carousel Container -->
+    <div class="relative">
+      <!-- Arrow Buttons for large screens -->
+      <button id="prevBtn" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white text-blue-700 w-10 h-10 rounded-full shadow-md hover:bg-blue-50 transition">
+        &#8592;
+      </button>
+
+      <!-- Scrollable Services -->
+      <div id="services-container" class="flex md:grid md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory py-4 px-1">
+        
+        <!-- Service Card Template -->
+        <div class="min-w-[260px] snap-start bg-white rounded-lg shadow-md p-5 flex flex-col items-center text-center hover:shadow-lg transition">
+          <img src="https://i.imgur.com/8vDa3mF.png" alt="Electrician" class="w-28 h-20 object-cover rounded-md ring-2 ring-blue-500 mb-4" />
+          <h2 class="text-lg font-semibold text-gray-800">Electrician</h2>
+          <p class="text-gray-500 text-sm mb-3">Get experts in 2 hours at ₹149</p>
+          <button class="bg-blue-600 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition">Book now</button>
+        </div>
+
+        <!-- Repeat cards -->
+        <div class="min-w-[260px] snap-start bg-white rounded-lg shadow-md p-5 flex flex-col items-center text-center hover:shadow-lg transition">
+          <img src="https://i.imgur.com/gu6E1Ul.png" alt="Plumber" class="w-28 h-20 object-cover rounded-md ring-2 ring-blue-500 mb-4" />
+          <h2 class="text-lg font-semibold text-gray-800">Plumber</h2>
+          <p class="text-gray-500 text-sm mb-3">Quick plumbing services at your door</p>
+          <button class="bg-blue-600 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition">Book now</button>
+        </div>
+
+        <div class="min-w-[260px] snap-start bg-white rounded-lg shadow-md p-5 flex flex-col items-center text-center hover:shadow-lg transition">
+          <img src="https://i.imgur.com/BXfFxPA.png" alt="Mechanic" class="w-28 h-20 object-cover rounded-md ring-2 ring-blue-500 mb-4" />
+          <h2 class="text-lg font-semibold text-gray-800">Mechanic</h2>
+          <p class="text-gray-500 text-sm mb-3">Mechanical issues fixed on spot</p>
+          <button class="bg-blue-600 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition">Book now</button>
+        </div>
+
+        <div class="min-w-[260px] snap-start bg-white rounded-lg shadow-md p-5 flex flex-col items-center text-center hover:shadow-lg transition">
+          <img src="https://i.imgur.com/2PYLUHq.png" alt="AC Repair" class="w-28 h-20 object-cover rounded-md ring-2 ring-blue-500 mb-4" />
+          <h2 class="text-lg font-semibold text-gray-800">AC Repair</h2>
+          <p class="text-gray-500 text-sm mb-3">AC service and repair at low cost</p>
+          <button class="bg-blue-600 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition">Book now</button>
+        </div>
+
+        <div class="min-w-[260px] snap-start bg-white rounded-lg shadow-md p-5 flex flex-col items-center text-center hover:shadow-lg transition">
+          <img src="https://placehold.co/112x80/4F46E5/ffffff?text=Paint" alt="Painting" class="w-28 h-20 object-cover rounded-md ring-2 ring-blue-500 mb-4" />
+          <h2 class="text-lg font-semibold text-gray-800">Painting</h2>
+          <p class="text-gray-500 text-sm mb-3">Professional painting services</p>
+          <button class="bg-blue-600 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition">Book now</button>
+        </div>
+
+        <div class="min-w-[260px] snap-start bg-white rounded-lg shadow-md p-5 flex flex-col items-center text-center hover:shadow-lg transition">
+          <img src="https://placehold.co/112x80/4F46E5/ffffff?text=Garden" alt="Gardening" class="w-28 h-20 object-cover rounded-md ring-2 ring-blue-500 mb-4" />
+          <h2 class="text-lg font-semibold text-gray-800">Gardening</h2>
+          <p class="text-gray-500 text-sm mb-3">Expert gardening and landscaping</p>
+          <button class="bg-blue-600 text-white text-sm px-4 py-2 rounded-full hover:bg-blue-700 transition">Book now</button>
+        </div>
+
+      </div>
+
+      <!-- Right Arrow Button -->
+      <button id="nextBtn" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white text-blue-700 w-10 h-10 rounded-full shadow-md hover:bg-blue-50 transition">
+        &#8594;
+      </button>
+    </div>
+  </section>
+
+  <!-- Scroll Button Script -->
+  <script>
+    const container = document.getElementById('services-container');
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

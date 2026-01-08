@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qucik Services</title>
+    <!-- Use Tailwind CSS for a modern, responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap">
+    
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="img/l.png" sizes="48x48" type="image/x-icon">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .font-montserrat {
+        font-family: 'Playfair Display', serif;
+      }
+      /* Hide the scrollbar for the services container */
+      .services-container::-webkit-scrollbar {
+        display: none;
+      }
+      .services-container {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      /* Custom styles for the arrow buttons */
+      .arrow-btn {
+        transition: all 0.3s ease-in-out;
+      }
+      .arrow-btn:hover {
+        transform: scale(1.1);
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+      .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* Space between links */
+            margin-top: 1.5rem;
+        }
+        .social-link-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px; /* Full rounded corners for circular buttons */
+            background-color: #374151; /* Dark gray background */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+            color: #ffffff; /* White icon color */
+        }
+        .social-link-btn:hover {
+            background-color: #2563eb; /* Blue background on hover */
+        }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+<header class="bg-white text-gray-800 p-4 md:p-6 shadow-md">
+      <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center text-2xl font-extrabold tracking-tight text-blue-700 mb-4 md:mb-0">
+          <!-- A professional logo icon -->
+          <img src="./img/l.png" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-10 h-10 mr-2">
+          Quick Services
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 items-center font-medium">
+          <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-300">Home</a>
+          <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-300">Services</a>
+          <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-300">Contact</a>
+          <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-300">About Us</a>
+          <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-300">My Booking</a>
+        </div>
+        
+        <!-- User Icon Button -->
+            <!-- The user icon is now a standalone button without any dropdown functionality -->
+            <div class="flex items-center mt-4 md:mt-0">
+                <button class="p-2 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <!-- User icon (SVG) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </button>
+            </div>
+      </nav>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signUpButton = document.getElementById('signUpButton');
+            const signUpDropdown = document.getElementById('signUpDropdown');
+
+            // Toggle the dropdown menu on button click
+            signUpButton.addEventListener('click', function() {
+                signUpDropdown.classList.toggle('hidden');
+            });
+
+            // Close the dropdown if the user clicks outside of it
+            window.addEventListener('click', function(event) {
+                if (!signUpButton.contains(event.target) && !signUpDropdown.contains(event.target)) {
+                    signUpDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 pt-20">
+      <!-- Hero Section -->
+      <h1 class="text-4xl md:text-5xl font-extrabold text-center text-gray-900 mb-16 font-montserrat">
+        Hiring Service Experts<br>Made Easy
+      </h1>
+      
+      <!-- Search and Location Bar -->
+      <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-16 max-w-4xl mx-auto">
+        <!-- Location Input -->
+        <div class="relative w-full flex-grow flex items-center bg-white p-4 rounded-xl shadow-lg border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-400 mr-3">
+            <path fill-rule="evenodd" d="m11.54 22.351.07.074a.75.75 0 0 0 1.06 0l.07-.074c.732-.773 1.944-1.925 3.522-3.874a1.724 1.724 0 0 0 .28-.372c.451-.62 1.348-.62 1.799 0a1.724 1.724 0 0 0 .28.372c1.578 1.949 2.79 3.101 3.522 3.874a.75.75 0 0 0 1.06-1.06c-.39-.41-1.39-1.574-3.08-3.694l-.24-.319a3.725 3.725 0 0 0-.583-.758c-1.352-1.282-2.584-2.613-3.792-4.045l-.488-.584a.75.75 0 0 1-.22-.515c0-.188.083-.365.22-.515l.488-.584c1.208-1.432 2.44-2.763 3.792-4.045a3.725 3.725 0 0 0 .583-.758l.24-.319c1.69-2.12 2.69-3.284 3.08-3.694a.75.75 0 1 0-1.06-1.06c-.732.773-1.944 1.925-3.522 3.874a1.724 1.724 0 0 0-.28.372c-.451.62-1.348.62-1.799 0a1.724 1.724 0 0 0-.28-.372c-1.578-1.949-2.79-3.101-3.522-3.874a.75.75 0 1 0-1.06 1.06c.39.41 1.39 1.574 3.08 3.694l.24.319a3.725 3.725 0 0 0 .583.758c1.352 1.282 2.584 2.613 3.792 4.045l.488.584a.75.75 0 0 1-.22.515c0 .188-.083.365-.22.515l-.488.584c-1.208 1.432-2.44 2.763-3.792 4.045a3.725 3.725 0 0 0-.583.758l-.24.319c-1.69 2.12-2.69 3.284-3.08 3.694a.75.75 0 1 0-1.06 1.06Zm2.55-12.75a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" clip-rule="evenodd" />
+          </svg>
+          <input type="text" placeholder="Select your city" class="bg-transparent focus:outline-none w-full text-gray-700" aria-label="Select city" />
+        </div>
+        
+        <!-- Service Search Input -->
+        <div class="relative w-full flex-grow flex items-center bg-white p-4 rounded-xl shadow-lg border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 transition duration-300">
+          <input type="text" placeholder="What service do you need?" class="bg-transparent focus:outline-none w-full text-gray-700" aria-label="Search for a service" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gray-400 ml-3 cursor-pointer" aria-label="Search icon">
+            <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.603 4.603a.75.75 0 1 1-1.06 1.06l-4.604-4.603A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Popular Services Section with icons -->
+      <div class="relative flex items-center justify-center mt-12">
+        <section id="icons-container" class="services-container flex flex-nowrap overflow-x-scroll gap-4 py-2 px-2 scroll-smooth">
+          <!-- Card for Electrician service -->
+          <div class="flex-none p-4 rounded-xl shadow-md bg-white text-center hover:bg-blue-50 transition-all duration-300 cursor-pointer min-w-[120px] lg:min-w-[140px]">
+            <svg class="h-12 w-12 mx-auto text-blue-700 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span class="text-sm font-semibold text-gray-700">Electrician</span>
+          </div>
+
+          <!-- Card for Plumber service -->
+          <div class="flex-none p-4 rounded-xl shadow-md bg-white text-center hover:bg-blue-50 transition-all duration-300 cursor-pointer min-w-[120px] lg:min-w-[140px]">
+            <svg class="h-12 w-12 mx-auto text-blue-700 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            <span class="text-sm font-semibold text-gray-700">Plumber</span>
+          </div>
+
+          <!-- Card for Mechanic service -->
+          <div class="flex-none p-4 rounded-xl shadow-md bg-white text-center hover:bg-blue-50 transition-all duration-300 cursor-pointer min-w-[120px] lg:min-w-[140px]">
+            <svg class="h-12 w-12 mx-auto text-blue-700 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class="text-sm font-semibold text-gray-700">Mechanic</span>
+          </div>
+
+          <!-- Card for AC Repair service -->
+          <div class="flex-none p-4 rounded-xl shadow-md bg-white text-center hover:bg-blue-50 transition-all duration-300 cursor-pointer min-w-[120px] lg:min-w-[140px]">
+            <svg class="h-12 w-12 mx-auto text-blue-700 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <span class="text-sm font-semibold text-gray-700">AC Repair</span>
+          </div>
+
+          <!-- Card for Painting service -->
+          <div class="flex-none p-4 rounded-xl shadow-md bg-white text-center hover:bg-blue-50 transition-all duration-300 cursor-pointer min-w-[120px] lg:min-w-[140px]">
+            <svg class="h-12 w-12 mx-auto text-blue-700 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.5m-1.432-8.568a4 4 0 014.286 1.411A5 5 0 0115 13a4 4 0 01-4 4h-1.371a2 2 0 00-.73.186L7 17.5M14 17h1a2 2 0 002-2v-4a2 2 0 00-2-2h-1m-4 0v2"></path>
+            </svg>
+            <span class="text-sm font-semibold text-gray-700">Home Transport</span>
+          </div>
+          
+          <!-- More cards for scrolling demonstration -->
+          
+        </section>
+      </div>
+
+      <!-- Services Carousel Container -->
+      <div class="relative flex items-center justify-center mt-12">
+        <!-- Left Arrow -->
+        <button id="prevBtn" class="arrow-btn absolute -left-6 md:-left-8 z-10 w-12 h-12 bg-white text-blue-700 rounded-full shadow-md flex items-center justify-center p-2 focus:outline-none" aria-label="Previous services">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <!-- Services Grid - The scrollable part -->
+        <section id="services-container" class="services-container flex flex-nowrap overflow-x-scroll gap-6 py-4 px-2 scroll-smooth">
+          <!-- Card 1 -->
+          <div class="service-card bg-white rounded-2xl shadow-xl min-w-[300px] hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden">
+            <div class="flex flex-col items-center p-6 text-center">
+              <img src="./img/e.webp" alt="An electrician working on a wire."  class="w-30 h-20- object-cover mb-4 ring-2 ring-blue-500 p-1" />
+              <h2 class="text-xl font-bold text-gray-900 mb-2">Electrician</h2>
+              <p class="text-gray-500 mb-4 text-sm">Get experts in 2 hours </p>
+              <button class="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition duration-300 shadow-md">Book now</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card bg-white rounded-2xl shadow-xl min-w-[300px] hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden">
+            <div class="flex flex-col items-center p-6 text-center">
+              <img src="./img/p.jpg" alt="A plumber fixing a pipe."  class="w-30 h-20- object-cover mb-4 ring-2 ring-blue-500 p-1" />
+              <h2 class="text-xl font-bold text-gray-900 mb-2">Plumber</h2>
+              <p class="text-gray-500 mb-4 text-sm">Quick plumbing services at your door</p>
+              <button class="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition duration-300 shadow-md">Book now</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card bg-white rounded-2xl shadow-xl min-w-[300px] hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden">
+            <div class="flex flex-col items-center p-6 text-center">
+              <img src="./img/m.jpg" alt="A car mechanic working on an engine."  class="w-30 h-20- object-cover mb-4 ring-2 ring-blue-500 p-1" />
+              <h2 class="text-xl font-bold text-gray-900 mb-2">Mechanic</h2>
+              <p class="text-gray-500 mb-4 text-sm">Mechanical issues fixed on spot</p>
+              <button class="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition duration-300 shadow-md">Book now</button>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="service-card bg-white rounded-2xl shadow-xl min-w-[300px] hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden">
+            <div class="flex flex-col items-center p-6 text-center">
+              <img src="./img/ac.jpg" alt="An AC unit being repaired."  class="w-30 h-20- object-cover mb-4 ring-2 ring-blue-500 p-1" />
+              <h2 class="text-xl font-bold text-gray-900 mb-2">AC Repair</h2>
+              <p class="text-gray-500 mb-4 text-sm">AC service and repair at low cost</p>
+              <button class="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition duration-300 shadow-md">Book now</button>
+            </div>
+          </div>
+          
+          <!-- More Cards -->
+
+
+
+          <div class="service-card bg-white rounded-2xl shadow-xl min-w-[300px] hover:shadow-2xl hover:scale-105 transition-all duration-300 overflow-hidden">
+            <div class="flex flex-col items-center p-6 text-center">
+              <img src="./img/t.webp" alt="Painter working on a wall."   class="w-30 h-20- object-cover mb-4 ring-2 ring-blue-500 p-1" />
+              <h2 class="text-xl font-bold text-gray-900 mb-2">Home Transport </h2>
+              <p class="text-gray-500 mb-4 text-sm">Professional Home Transport services</p>
+              <button class="bg-blue-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-800 transition duration-300 shadow-md">Book now</button>
+            </div>
+        </div>
+
+
+
+        </section>
+
+        <!-- Right Arrow -->
+        <button id="nextBtn" class="arrow-btn absolute -right-6 md:-right-8 z-10 w-12 h-12 bg-white text-blue-700 rounded-full shadow-md flex items-center justify-center p-2 focus:outline-none" aria-label="Next services">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Section: Why Choose Us -->
+      <section class="mt-24">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-12">Why Choose Us?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Feature 1: Verified Professionals -->
+          <div class="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg border-t-4 border-blue-500">
+            <div class="bg-blue-100 p-4 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-700" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+                <path d="M15 17a5 5 0 0 0 5 -5v-4a2 2 0 0 0 -2 -2h-2a2 2 0 0 0 -2 2v4a5 5 0 0 0 5 5z" />
+                <path d="M12 21a9 9 0 1 0 0 -18a9 9 0 0 0 0 18z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Verified Professionals</h3>
+            <p class="text-gray-500">All our service providers are background-checked and certified experts.</p>
+          </div>
+
+          <!-- Feature 2: Transparent Pricing -->
+          <div class="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg border-t-4 border-blue-500">
+            <div class="bg-blue-100 p-4 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-700" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                <path d="M13.483 17.075l-1.483 -1.075" />
+                <path d="M12 9v-6" />
+                <path d="M15 17l1.5 -1.5" />
+                <path d="M9 17l-1.5 -1.5" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Transparent Pricing</h3>
+            <p class="text-gray-500">Know the cost upfront with no hidden fees or surprise charges.</p>
+          </div>
+
+          <!-- Feature 3: 24/7 Customer Support -->
+          <div class="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg border-t-4 border-blue-500">
+            <div class="bg-blue-100 p-4 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-700" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1z" />
+                <path d="M12 15h.01" />
+                <path d="M11 11h2.01" />
+                <path d="M10 7h4.01" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">24/7 Customer Support</h3>
+            <p class="text-gray-500">Our support team is always available to assist you with any issue.</p>
+          </div>
+
+          <!-- Feature 4: Satisfaction Guarantee -->
+          <div class="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-lg border-t-4 border-blue-500">
+            <div class="bg-blue-100 p-4 rounded-full mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-700" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Satisfaction Guarantee</h3>
+            <p class="text-gray-500">We stand by our work and guarantee your satisfaction with every service.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: How It Works -->
+      <section class="mt-24">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-12">How It Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center text-center p-8 bg-blue-50 rounded-2xl shadow-lg">
+            <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-700 text-white font-bold text-2xl mb-4">1</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Select Service</h3>
+            <p class="text-gray-600">Choose the home repair service you need from our extensive list.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center text-center p-8 bg-blue-50 rounded-2xl shadow-lg">
+            <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-700 text-white font-bold text-2xl mb-4">2</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Book an Appointment</h3>
+            <p class="text-gray-600">Pick a convenient date and time that fits your schedule.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center text-center p-8 bg-blue-50 rounded-2xl shadow-lg">
+            <div class="flex items-center justify-center w-16 h-16 rounded-full bg-blue-700 text-white font-bold text-2xl mb-4">3</div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Expert on the way</h3>
+            <p class="text-gray-600">A verified professional will arrive at your doorstep, on time.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Call to Action -->
+      <section class="mt-24 bg-blue-700 text-white rounded-3xl p-12 text-center shadow-2xl">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Ready to get started?</h2>
+        <p class="text-lg md:text-xl mb-8 opacity-90">Book your service today and experience hassle-free home repairs.</p>
+        <button class="bg-white text-blue-700 font-semibold py-4 px-10 rounded-full hover:bg-gray-100 transition duration-300 shadow-xl text-lg">Book a Service Now</button>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 p-8 mt-12">
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Company Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">About us</a></li>
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Customers Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Customers</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">Contact us</a></li>
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">User Reviews</a></li>
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">My Bookings</a></li>
+          </ul>
+        </div>
+        
+        <!-- For Professionals Section -->
+        <div>
+          <h4 class="text-xl font-semibold mb-4 text-blue-700">For Professionals</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-blue-500 transition duration-300">Register as a professional</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links Section -->
+        <div> <!-- Added margin-top for spacing -->
+            <h4 class="text-xl font-semibold mb-4 text-blue-700">Social links</h4>
+            <div  class="flex space-x-3">
+                <!-- Facebook -->
+                <a href="#" class="social-link-btn" aria-label="Facebook">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+                <!-- Twitter -->
+                <a href="#" class="social-link-btn" aria-label="Twitter">
+                    <i class="fab fa-twitter fa-lg"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="#" class="social-link-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#" class="social-link-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+            </div>
+        </div>
+      
+      <div class="text-center text-sm text-gray-500 mt-8">
+        <p>&copy; 2025 CompanyName. All rights reserved.</p>
+      </div>
+    </footer>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const servicesContainer = document.getElementById('services-container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        // Use a dynamic card width calculation for better responsiveness
+        const updateCardWidth = () => {
+            const firstCard = servicesContainer.querySelector('.service-card');
+            if (firstCard) {
+                // Get the computed width of the card including margin/gap
+                const style = window.getComputedStyle(firstCard);
+                const width = parseFloat(style.width);
+                const gap = parseFloat(window.getComputedStyle(servicesContainer).getPropertyValue('gap'));
+                return width + gap;
+            }
+            return 324; // Fallback value
+        };
+
+        // Scroll to the next set of cards
+        nextBtn.addEventListener('click', () => {
+          const cardWidth = updateCardWidth();
+          servicesContainer.scrollBy({
+            left: cardWidth * 2,
+            behavior: 'smooth'
+          });
+        });
+
+        // Scroll to the previous set of cards
+        prevBtn.addEventListener('click', () => {
+          const cardWidth = updateCardWidth();
+          servicesContainer.scrollBy({
+            left: -cardWidth * 2,
+            behavior: 'smooth'
+          });
+        });
+
+      });
+    </script>
+  </body>
+</html>
